@@ -22,6 +22,7 @@ def rand_date(iniDate, endDate):
 
 
 ###############################################################################
+### Aquí escribir sus datos para cargar en su BD correspondiente. ###
 def get_connection_db(dbName):
 	return psycopg2.connect(user="postgres", password="postre", database=dbName)
 
@@ -266,6 +267,7 @@ tables = [
 ]
 
 dbName = "Voluntarios"
+## Opciones de borrado e insersión respectivamente.
 swDelete = 'n'  
 swInsert = 'y' 
 main(tables, dbName, swDelete, swInsert)
