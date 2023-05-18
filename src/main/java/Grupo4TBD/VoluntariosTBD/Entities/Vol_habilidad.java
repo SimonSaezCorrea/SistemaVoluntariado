@@ -1,14 +1,13 @@
 package Grupo4TBD.VoluntariosTBD.Entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
+@Getter
+@Setter
 public class Vol_habilidad {
     Integer id;
     Voluntario voluntario;

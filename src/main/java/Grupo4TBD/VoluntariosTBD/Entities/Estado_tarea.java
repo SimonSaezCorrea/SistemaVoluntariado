@@ -1,14 +1,13 @@
 package Grupo4TBD.VoluntariosTBD.Entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
+@Getter
+@Setter
 public class Estado_tarea {
     private Integer id;
     private String descripcion;

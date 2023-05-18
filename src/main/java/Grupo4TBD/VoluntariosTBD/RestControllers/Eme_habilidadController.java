@@ -1,8 +1,7 @@
-package Grupo4TBD.VoluntariosTBD.Controllers;
+package Grupo4TBD.VoluntariosTBD.RestControllers;
 
 import Grupo4TBD.VoluntariosTBD.Entities.Eme_habilidad;
 import Grupo4TBD.VoluntariosTBD.Repositories.Eme_habilidadRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
