@@ -1,9 +1,19 @@
 package Grupo4TBD.VoluntariosTBD.Repositories;
 
 import Grupo4TBD.VoluntariosTBD.Entities.Emergencia;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
-public interface EmergenciaRepository extends JpaRepository<Emergencia,String> {
+public interface EmergenciaRepository {
+    //Create
+    public Emergencia crear(Emergencia emergencia);
+    //Read
+    public List<Emergencia> getAll();
+    public List<Emergencia> show(Integer id);
+    //Update
+    public String update(Emergencia emergencia, Integer id);
+    //Delete
+    public void delete(Integer id);
 }
