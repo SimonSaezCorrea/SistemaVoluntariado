@@ -1,8 +1,6 @@
 package Grupo4TBD.VoluntariosTBD.Repositories;
 
-import Grupo4TBD.VoluntariosTBD.Entities.Estado_tarea;
 import Grupo4TBD.VoluntariosTBD.Entities.Habilidad;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
