@@ -18,9 +18,9 @@ public class HabilidadRepoImp implements HabilidadRepository {
     public Habilidad crear(Habilidad habilidad){
         try(Connection conn = sql2o.open()){
             String sql = "INSERT INTO Habilidad (descrip)" +
-                    "VALUES (:descripcion)";
+                    "VALUES (:descrip)";
             conn.createQuery(sql, true)
-                    .addParameter("descripcion", habilidad.getDescripcion())
+                    .addParameter("descrip", habilidad.getDescrip())
                     .executeUpdate();
             return habilidad;
         } catch (Exception e) {
@@ -58,7 +58,7 @@ public class HabilidadRepoImp implements HabilidadRepository {
             String updateSql = "update Habilidad set descrip=:descripcion WHERE id=:id";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
-                    .addParameter("descripcion", habilidad.getDescripcion())
+                    .addParameter("descrip", habilidad.getDescrip())
                     .executeUpdate();
             return "Se actualizó la Habilidad";
         }catch (Exception e) {

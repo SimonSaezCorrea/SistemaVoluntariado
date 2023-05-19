@@ -19,12 +19,12 @@ public class EmergenciaRepoImp implements EmergenciaRepository {
     public Emergencia crear(Emergencia emergencia){
         try(Connection conn = sql2o.open()){
             String sql = "INSERT INTO Emergencia (nombre, descrip, finicio, ffin, id_institucion)" +
-                    "VALUES (:nombre, :descripcion, :fecha_inicio, :fecha_fin, :id_institucion)";
+                    "VALUES (:nombre, :descrip, :finicio, :ffin, :id_institucion)";
             conn.createQuery(sql, true)
                     .addParameter("nombre", emergencia.getNombre())
-                    .addParameter("descripcion", emergencia.getDescripcion())
-                    .addParameter("fecha_inicio", emergencia.getFecha_inicio())
-                    .addParameter("fecha_fin", emergencia.getFecha_fin())
+                    .addParameter("descrip", emergencia.getDescrip())
+                    .addParameter("finicio", emergencia.getFinicio())
+                    .addParameter("ffin", emergencia.getFfin())
                     .addParameter("id_institucion", emergencia.getId_institucion())
                     .executeUpdate();
             return emergencia;
@@ -61,17 +61,17 @@ public class EmergenciaRepoImp implements EmergenciaRepository {
     public String update(Emergencia emergencia, Integer id){
         try(Connection conn = sql2o.open()){
             String updateSql = "update Emergencia set nombre=:nombre and " +
-                    "descrip=:descripcion and " +
-                    "finicio=:fecha_inicio and " +
-                    "ffin=:fecha_fin and " +
+                    "descrip=:descrip and " +
+                    "finicio=:finicio and " +
+                    "ffin=:ffin and " +
                     "id_institucion=:id_institucion " +
                     "WHERE id=:id";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
                     .addParameter("nombre", emergencia.getNombre())
-                    .addParameter("descripcion", emergencia.getDescripcion())
-                    .addParameter("fecha_inicio", emergencia.getFecha_inicio())
-                    .addParameter("fecha_fin", emergencia.getFecha_fin())
+                    .addParameter("descrip", emergencia.getDescrip())
+                    .addParameter("finicio", emergencia.getFinicio())
+                    .addParameter("ffin", emergencia.getFfin())
                     .addParameter("id_institucion", emergencia.getId_institucion())
                     .executeUpdate();
             return "Se actualizó la Emergencia";

@@ -10,5 +10,5 @@ import lombok.*;
 @Setter
 public class Habilidad {
     private Integer id;
-    private String descripcion;
+    private String descrip;
 }

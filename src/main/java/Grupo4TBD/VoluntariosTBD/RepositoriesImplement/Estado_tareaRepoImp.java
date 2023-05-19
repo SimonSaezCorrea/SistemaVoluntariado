@@ -20,7 +20,7 @@ public class Estado_tareaRepoImp implements Estado_tareaRepository {
             String sql = "INSERT INTO Estado_tarea (descrip)" +
                     "VALUES (:descripcion)";
             conn.createQuery(sql, true)
-                    .addParameter("descripcion", estado_tarea.getDescripcion())
+                    .addParameter("descrip", estado_tarea.getDescrip())
                     .executeUpdate();
             return estado_tarea;
         } catch (Exception e) {
@@ -55,10 +55,10 @@ public class Estado_tareaRepoImp implements Estado_tareaRepository {
     @Override
     public String update(Estado_tarea estado_tarea, Integer id){
         try(Connection conn = sql2o.open()){
-            String updateSql = "update Estado_tarea set descrip=:descripcion WHERE id=:id";
+            String updateSql = "update Estado_tarea set descrip=:descrip WHERE id=:id";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
-                    .addParameter("descripcion", estado_tarea.getDescripcion())
+                    .addParameter("descrip", estado_tarea.getDescrip())
                     .executeUpdate();
             return "Se actualizó la Estado_tarea";
         }catch (Exception e) {

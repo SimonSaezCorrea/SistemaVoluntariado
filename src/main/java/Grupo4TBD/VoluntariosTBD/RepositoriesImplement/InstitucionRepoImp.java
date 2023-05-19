@@ -21,7 +21,7 @@ public class InstitucionRepoImp implements InstitucionRepository {
                     "VALUES (:nombre, :descripcion)";
             conn.createQuery(sql, true)
                     .addParameter("nombre", institucion.getNombre())
-                    .addParameter("descripcion", institucion.getDescripcion())
+                    .addParameter("descrip", institucion.getDescrip())
                     .executeUpdate();
             return institucion;
         } catch (Exception e) {
@@ -60,7 +60,7 @@ public class InstitucionRepoImp implements InstitucionRepository {
             conn.createQuery(updateSql)
                     .addParameter("id", id)
                     .addParameter("nombre", institucion.getNombre())
-                    .addParameter("descripcion", institucion.getDescripcion())
+                    .addParameter("descrip", institucion.getDescrip())
                     .executeUpdate();
             return "Se actualizó la Institucion";
         }catch (Exception e) {

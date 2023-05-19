@@ -13,8 +13,8 @@ import java.sql.Date;
 public class Emergencia {
     private Integer id;
     private String nombre;
-    private String descripcion;
-    private Date fecha_inicio;
-    private Date fecha_fin;
+    private String descrip;
+    private Date finicio;
+    private Date ffin;
     private Integer id_institucion;
 }

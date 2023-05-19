@@ -19,16 +19,16 @@ public class TareaRepoImp implements TareaRepository {
     public Tarea crear(Tarea tarea){
         try(Connection conn = sql2o.open()){
             String sql = "INSERT INTO Tarea (nombre, descrip, cant_vol_requeridos, cant_vol_inscritos, id_emergencia, finicio, ffin, id_estado)" +
-                    "VALUES (:nombre, :descrip, :cant_vol_requeridos, :cant_vol_inscritos, :id_emergencia, :fecha_inicio, :fecha_fin, :id_estado_tarea)";
+                    "VALUES (:nombre, :descrip, :cant_vol_requeridos, :cant_vol_inscritos, :id_emergencia, :finicio, :ffin, :id_estado)";
             conn.createQuery(sql, true)
                     .addParameter("nombre", tarea.getNombre())
                     .addParameter("descrip", tarea.getDescrip())
                     .addParameter("cant_vol_requeridos", tarea.getCant_vol_requeridos())
                     .addParameter("cant_vol_inscritos", tarea.getCant_vol_inscritos())
                     .addParameter("id_emergencia", tarea.getId_emergencia())
-                    .addParameter("fecha_inicio", tarea.getFecha_inicio())
-                    .addParameter("fecha_fin", tarea.getFecha_fin())
-                    .addParameter("id_estado_tarea", tarea.getId_estado_tarea())
+                    .addParameter("finicio", tarea.getFinicio())
+                    .addParameter("ffin", tarea.getFfin())
+                    .addParameter("id_estado", tarea.getId_estado())
                     .executeUpdate();
             return tarea;
         } catch (Exception e) {
@@ -68,9 +68,9 @@ public class TareaRepoImp implements TareaRepository {
                     "cant_vol_requeridos=:cant_vol_requeridos and " +
                     "cant_vol_inscritos=:cant_vol_inscritos and " +
                     "id_emergencia=:id_emergencia and " +
-                    "finicio=:fecha_inicio and " +
-                    "ffin=:fecha_fin and " +
-                    "id_estado=:id_estado_tarea " +
+                    "finicio=:finicio and " +
+                    "ffin=:ffin and " +
+                    "id_estado=:id_estado " +
                     "WHERE id=:id";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
@@ -79,9 +79,9 @@ public class TareaRepoImp implements TareaRepository {
                     .addParameter("cant_vol_requeridos", tarea.getCant_vol_requeridos())
                     .addParameter("cant_vol_inscritos", tarea.getCant_vol_inscritos())
                     .addParameter("id_emergencia", tarea.getId_emergencia())
-                    .addParameter("fecha_inicio", tarea.getFecha_inicio())
-                    .addParameter("fecha_fin", tarea.getFecha_fin())
-                    .addParameter("id_estado_tarea", tarea.getId_estado_tarea())
+                    .addParameter("finicio", tarea.getFinicio())
+                    .addParameter("ffin", tarea.getFfin())
+                    .addParameter("id_estado", tarea.getId_estado())
                     .executeUpdate();
             return "Se actualizó la Tarea";
         } catch (Exception e) {

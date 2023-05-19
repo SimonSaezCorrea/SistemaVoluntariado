@@ -10,5 +10,5 @@ import lombok.*;
 @Setter
 public class Estado_tarea {
     private Integer id;
-    private String descripcion;
+    private String descrip;
 }

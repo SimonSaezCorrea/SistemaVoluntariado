@@ -17,7 +17,7 @@ public class Tarea {
     private Integer cant_vol_requeridos;
     private Integer cant_vol_inscritos;
     private Integer id_emergencia;
-    private Date fecha_inicio;
-    private Date fecha_fin;
-    private Integer id_estado_tarea;
+    private Date finicio;
+    private Date ffin;
+    private Integer id_estado;
 }
