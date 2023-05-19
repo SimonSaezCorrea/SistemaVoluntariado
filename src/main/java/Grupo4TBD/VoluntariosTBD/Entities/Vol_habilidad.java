@@ -9,7 +9,7 @@ import lombok.*;
 @Getter
 @Setter
 public class Vol_habilidad {
-    Integer id;
-    Voluntario voluntario;
-    Habilidad habilidad;
+    private Integer id;
+    private Integer id_voluntario;
+    private Integer id_habilidad;
 }

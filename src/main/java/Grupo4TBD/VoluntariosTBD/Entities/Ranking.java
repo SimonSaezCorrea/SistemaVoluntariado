@@ -9,10 +9,10 @@ import lombok.*;
 @Getter
 @Setter
 public class Ranking {
-    Integer id;
-    Voluntario voluntario;
-    Tarea tarea;
-    Integer puntaje;
-    Integer flg_invitado;
-    Integer flg_participa;
+    private Integer id;
+    private Integer id_voluntario;
+    private Integer id_tarea;
+    private Integer puntaje;
+    private Integer flg_invitado;
+    private Integer flg_participa;
 }

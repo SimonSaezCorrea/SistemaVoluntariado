@@ -11,13 +11,13 @@ import java.sql.Date;
 @Getter
 @Setter
 public class Tarea {
-    Integer id;
-    String nombre;
-    String descrip;
-    Integer cant_vol_requeridos;
-    Integer cant_vol_inscritos;
-    Emergencia emergencia;
-    Date fecha_inicio;
-    Date fecha_fin;
-    Estado_tarea estado_tarea;
+    private Integer id;
+    private String nombre;
+    private String descrip;
+    private Integer cant_vol_requeridos;
+    private Integer cant_vol_inscritos;
+    private Integer id_emergencia;
+    private Date fecha_inicio;
+    private Date fecha_fin;
+    private Integer id_estado_tarea;
 }

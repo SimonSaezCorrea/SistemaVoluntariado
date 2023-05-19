@@ -9,7 +9,7 @@ import lombok.*;
 @Getter
 @Setter
 public class Tarea_habilidad {
-    Integer id;
-    Eme_habilidad emehab;
-    Tarea tarea;
+    private Integer id;
+    private Integer id_emehab;
+    private Integer id_tarea;
 }

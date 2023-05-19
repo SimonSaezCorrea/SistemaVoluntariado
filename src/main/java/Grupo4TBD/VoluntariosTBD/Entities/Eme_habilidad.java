@@ -10,6 +10,6 @@ import lombok.*;
 @Setter
 public class Eme_habilidad {
     private Integer id;
-    private Emergencia emergencia;
-    private Habilidad habilidad;
+    private Integer id_emergencia;
+    private Integer id_habilidad;
 }

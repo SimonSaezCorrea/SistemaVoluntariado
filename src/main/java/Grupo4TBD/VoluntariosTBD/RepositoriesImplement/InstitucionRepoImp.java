@@ -1,26 +1,27 @@
 package Grupo4TBD.VoluntariosTBD.RepositoriesImplement;
 
-import Grupo4TBD.VoluntariosTBD.Entities.Habilidad;
-import Grupo4TBD.VoluntariosTBD.Repositories.HabilidadRepository;
+import Grupo4TBD.VoluntariosTBD.Entities.Institucion;
+import Grupo4TBD.VoluntariosTBD.Repositories.InstitucionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import java.util.List;
 
-public class HabilidadRepoImp implements HabilidadRepository {
+public class InstitucionRepoImp implements InstitucionRepository {
     @Autowired
     private Sql2o sql2o;
 
     @Override
-    public Habilidad crear(Habilidad habilidad){
+    public Institucion crear(Institucion institucion){
         try(Connection conn = sql2o.open()){
-            String sql = "INSERT INTO Habilidad (descripcion)" +
-                    "VALUES (:descripcion)";
+            String sql = "INSERT INTO Institucion (nombre, descripcion)" +
+                    "VALUES (:nombre, :descripcion)";
             conn.createQuery(sql, true)
-                    .addParameter("descripcion", habilidad.getDescripcion())
+                    .addParameter("nombre", institucion.getNombre())
+                    .addParameter("descripcion", institucion.getDescripcion())
                     .executeUpdate();
-            return habilidad;
+            return institucion;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
@@ -28,10 +29,10 @@ public class HabilidadRepoImp implements HabilidadRepository {
     }
 
     @Override
-    public List<Habilidad> getAll() {
+    public List<Institucion> getAll() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from Habilidad order by id ASC")
-                    .executeAndFetch(Habilidad.class);
+            return conn.createQuery("select * from Institucion order by id ASC")
+                    .executeAndFetch(Institucion.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
@@ -39,11 +40,11 @@ public class HabilidadRepoImp implements HabilidadRepository {
     }
 
     @Override
-    public List<Habilidad> show(Integer id) {
+    public List<Institucion> show(Integer id) {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from Habilidad where id = :id ")
+            return conn.createQuery("select * from Institucion where id = :id_voluntario ")
                     .addParameter("id",id)
-                    .executeAndFetch(Habilidad.class);
+                    .executeAndFetch(Institucion.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
@@ -51,24 +52,25 @@ public class HabilidadRepoImp implements HabilidadRepository {
     }
 
     @Override
-    public String update(Habilidad habilidad, Integer id){
+    public String update(Institucion institucion, Integer id){
         try(Connection conn = sql2o.open()){
-            String updateSql = "update Habilidad set descripcion=:descripcion WHERE id=:id";
+            String updateSql = "update Voluntario set nombre=:nombre and descripcion=:descripcion WHERE id=:id";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
-                    .addParameter("descripcion", habilidad.getDescripcion())
+                    .addParameter("nombre", institucion.getNombre())
+                    .addParameter("descripcion", institucion.getDescripcion())
                     .executeUpdate();
-            return "Se actualizó la Habilidad";
+            return "Se actualizó la Institucion";
         }catch (Exception e) {
             System.out.println(e.getMessage());
-            return "Fallo al actualizar Habilidad";
+            return "Fallo al actualizar Institucion";
         }
     }
 
     @Override
     public void delete(Integer id) {
         try(Connection conn = sql2o.open()){
-            conn.createQuery("DELETE from Habilidad where id = :id ")
+            conn.createQuery("DELETE from Institucion where id = :id ")
                     .addParameter("id",id)
                     .executeUpdate();
         }catch (Exception e) {

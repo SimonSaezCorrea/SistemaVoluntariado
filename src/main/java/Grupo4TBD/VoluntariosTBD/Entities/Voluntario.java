@@ -9,6 +9,6 @@ import lombok.*;
 @Getter
 @Setter
 public class Voluntario {
-    Integer id;
-    String nombre;
+    private Integer id;
+    private String nombre;
 }

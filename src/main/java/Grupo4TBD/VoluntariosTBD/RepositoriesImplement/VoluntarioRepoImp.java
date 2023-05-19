@@ -13,14 +13,14 @@ public class VoluntarioRepoImp implements VoluntarioRepository {
     private Sql2o sql2o;
 
     @Override
-    public Voluntario crear(Voluntario Voluntario){
+    public Voluntario crear(Voluntario voluntario){
         try(Connection conn = sql2o.open()){
             String sql = "INSERT INTO Voluntario (nombre)" +
                     "VALUES (:nombre)";
             conn.createQuery(sql, true)
-                    .addParameter("nombre", Voluntario.getNombre())
+                    .addParameter("nombre", voluntario.getNombre())
                     .executeUpdate();
-            return Voluntario;
+            return voluntario;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
@@ -39,10 +39,10 @@ public class VoluntarioRepoImp implements VoluntarioRepository {
     }
 
     @Override
-    public List<Voluntario> show(Integer id_voluntario) {
+    public List<Voluntario> show(Integer id) {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from Voluntario where id = :id_voluntario ")
-                    .addParameter("id",id_voluntario)
+            return conn.createQuery("select * from Voluntario where id = :id ")
+                    .addParameter("id",id)
                     .executeAndFetch(Voluntario.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -51,28 +51,29 @@ public class VoluntarioRepoImp implements VoluntarioRepository {
     }
 
     @Override
-    public void delete(Integer id_voluntario) {
+    public String update(Voluntario voluntario, Integer id){
         try(Connection conn = sql2o.open()){
-            conn.createQuery("DELETE from Voluntario where id = :id_voluntario ")
-                    .addParameter("id",id_voluntario)
-                    .executeUpdate();
-        }catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-    }
-    @Override
-    public String update(Voluntario Voluntario, Integer id_voluntario){
-        try(Connection conn = sql2o.open()){
-            String updateSql = "update Voluntario set nombre=:nombre WHERE id=:id_voluntario";
+            String updateSql = "update Voluntario set nombre=:nombre WHERE id=:id";
             conn.createQuery(updateSql)
-                    .addParameter("id", id_voluntario)
-                    .addParameter("nombre", Voluntario.getNombre())
+                    .addParameter("id", id)
+                    .addParameter("nombre", voluntario.getNombre())
                     .executeUpdate();
             return "Se actualizó la Voluntario";
         }catch (Exception e) {
             System.out.println(e.getMessage());
             return "Fallo al actualizar Voluntario";
         }
+    }
+
+    @Override
+    public void delete(Integer id) {
+        try(Connection conn = sql2o.open()){
+            conn.createQuery("DELETE from Voluntario where id = :id ")
+                    .addParameter("id",id)
+                    .executeUpdate();
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 }

@@ -9,7 +9,7 @@ import lombok.*;
 @Getter
 @Setter
 public class Institucion {
-    Integer id;
-    String nombre;
-    String descripcion;
+    private Integer id;
+    private String nombre;
+    private String descripcion;
 }

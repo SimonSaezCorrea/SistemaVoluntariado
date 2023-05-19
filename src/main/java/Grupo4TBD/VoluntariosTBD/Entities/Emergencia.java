@@ -16,5 +16,5 @@ public class Emergencia {
     private String descripcion;
     private Date fecha_inicio;
     private Date fecha_fin;
-    private Institucion institucion;
+    private Integer id_institucion;
 }
