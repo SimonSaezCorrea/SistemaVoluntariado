@@ -3,11 +3,13 @@ package Grupo4TBD.VoluntariosTBD.RepositoriesImplement;
 import Grupo4TBD.VoluntariosTBD.Entities.Voluntario;
 import Grupo4TBD.VoluntariosTBD.Repositories.VoluntarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import java.util.List;
 
+@Repository
 public class VoluntarioRepoImp implements VoluntarioRepository {
     @Autowired
     private Sql2o sql2o;

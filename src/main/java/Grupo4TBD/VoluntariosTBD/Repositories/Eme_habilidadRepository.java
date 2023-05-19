@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+
 public interface Eme_habilidadRepository {
     //Create
     public Eme_habilidad crear(Eme_habilidad eme_habilidad);

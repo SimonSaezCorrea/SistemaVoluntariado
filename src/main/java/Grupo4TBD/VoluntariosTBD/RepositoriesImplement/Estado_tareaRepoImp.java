@@ -3,11 +3,13 @@ package Grupo4TBD.VoluntariosTBD.RepositoriesImplement;
 import Grupo4TBD.VoluntariosTBD.Entities.Estado_tarea;
 import Grupo4TBD.VoluntariosTBD.Repositories.Estado_tareaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import java.util.List;
 
+@Repository
 public class Estado_tareaRepoImp implements Estado_tareaRepository {
     @Autowired
     private Sql2o sql2o;

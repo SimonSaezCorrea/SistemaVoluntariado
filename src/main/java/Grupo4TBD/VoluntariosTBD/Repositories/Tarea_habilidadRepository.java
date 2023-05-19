@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+
 public interface Tarea_habilidadRepository {
     //Create
     public Tarea_habilidad crear(Tarea_habilidad tareaHabilidad);

@@ -3,11 +3,13 @@ package Grupo4TBD.VoluntariosTBD.RepositoriesImplement;
 import Grupo4TBD.VoluntariosTBD.Entities.Eme_habilidad;
 import Grupo4TBD.VoluntariosTBD.Repositories.Eme_habilidadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import java.util.List;
 
+@Repository
 public class Eme_habilidadRepoImp implements Eme_habilidadRepository {
     @Autowired
     private Sql2o sql2o;

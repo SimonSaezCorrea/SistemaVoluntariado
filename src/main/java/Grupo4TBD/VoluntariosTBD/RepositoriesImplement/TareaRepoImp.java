@@ -3,19 +3,21 @@ package Grupo4TBD.VoluntariosTBD.RepositoriesImplement;
 import Grupo4TBD.VoluntariosTBD.Entities.Tarea;
 import Grupo4TBD.VoluntariosTBD.Repositories.TareaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import java.util.List;
 
+@Repository
 public class TareaRepoImp implements TareaRepository {
 
     @Autowired
     private Sql2o sql2o;
 
     @Override
-    public Tarea crear(Tarea tarea){
-        try(Connection conn = sql2o.open()){
+    public Tarea crear(Tarea tarea) {
+        try (Connection conn = sql2o.open()) {
             String sql = "INSERT INTO Tarea (nombre, descrip, cant_vol_requeridos, cant_vol_inscritos, id_emergencia, fecha_inicio, fecha_fin, id_estado_tarea)" +
                     "VALUES (:nombre, :descrip, :cant_vol_requeridos, :cant_vol_inscritos, :id_emergencia, :fecha_inicio, :fecha_fin, :id_estado_tarea)";
             conn.createQuery(sql, true)
@@ -37,7 +39,7 @@ public class TareaRepoImp implements TareaRepository {
 
     @Override
     public List<Tarea> getAll() {
-        try(Connection conn = sql2o.open()){
+        try (Connection conn = sql2o.open()) {
             return conn.createQuery("select * from Tarea order by id ASC")
                     .executeAndFetch(Tarea.class);
         } catch (Exception e) {
@@ -48,7 +50,7 @@ public class TareaRepoImp implements TareaRepository {
 
     @Override
     public List<Tarea> show(Integer id) {
-        try(Connection conn = sql2o.open()){
+        try (Connection conn = sql2o.open()) {
             return conn.createQuery("select * from Tarea where id=:id ")
                     .addParameter("id", id)
                     .executeAndFetch(Tarea.class);
@@ -59,8 +61,8 @@ public class TareaRepoImp implements TareaRepository {
     }
 
     @Override
-    public String update(Tarea tarea, Integer id){
-        try(Connection conn = sql2o.open()){
+    public String update(Tarea tarea, Integer id) {
+        try (Connection conn = sql2o.open()) {
             String updateSql = "update Tarea set nombre=:nombre and " +
                     "descrip=:descrip and " +
                     "cant_vol_requeridos=:cant_vol_requeridos and " +
@@ -82,7 +84,7 @@ public class TareaRepoImp implements TareaRepository {
                     .addParameter("id_estado_tarea", tarea.getId_estado_tarea())
                     .executeUpdate();
             return "Se actualizó la Tarea";
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return "Fallo al actualizar Tarea";
         }
@@ -90,11 +92,11 @@ public class TareaRepoImp implements TareaRepository {
 
     @Override
     public void delete(Integer id) {
-        try(Connection conn = sql2o.open()){
+        try (Connection conn = sql2o.open()) {
             conn.createQuery("DELETE from Tarea where id=:id ")
-                    .addParameter("id",id)
+                    .addParameter("id", id)
                     .executeUpdate();
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 

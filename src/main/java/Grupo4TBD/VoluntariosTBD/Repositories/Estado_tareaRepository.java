@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+
 public interface Estado_tareaRepository {
     //Create
     public Estado_tarea crear(Estado_tarea estadoTarea);

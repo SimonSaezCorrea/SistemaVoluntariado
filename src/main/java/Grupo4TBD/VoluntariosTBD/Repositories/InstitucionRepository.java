@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+
 public interface InstitucionRepository {
     //Create
     public Institucion crear(Institucion institucion);
