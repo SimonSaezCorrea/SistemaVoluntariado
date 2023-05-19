@@ -33,7 +33,7 @@ public class Vol_habilidadRepoImp implements Vol_habilidadRepository {
     @Override
     public List<Vol_habilidad> getAll() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from Vol_habilidad order by id ASC")
+            return conn.createQuery("select * from Vol_habilidad order by id")
                     .executeAndFetch(Vol_habilidad.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());

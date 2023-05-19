@@ -17,7 +17,7 @@ public class HabilidadRepoImp implements HabilidadRepository {
     @Override
     public Habilidad crear(Habilidad habilidad){
         try(Connection conn = sql2o.open()){
-            String sql = "INSERT INTO Habilidad (descripcion)" +
+            String sql = "INSERT INTO Habilidad (descrip)" +
                     "VALUES (:descripcion)";
             conn.createQuery(sql, true)
                     .addParameter("descripcion", habilidad.getDescripcion())
@@ -32,7 +32,7 @@ public class HabilidadRepoImp implements HabilidadRepository {
     @Override
     public List<Habilidad> getAll() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from Habilidad order by id ASC")
+            return conn.createQuery("select * from Habilidad order by id")
                     .executeAndFetch(Habilidad.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -55,7 +55,7 @@ public class HabilidadRepoImp implements HabilidadRepository {
     @Override
     public String update(Habilidad habilidad, Integer id){
         try(Connection conn = sql2o.open()){
-            String updateSql = "update Habilidad set descripcion=:descripcion WHERE id=:id";
+            String updateSql = "update Habilidad set descrip=:descripcion WHERE id=:id";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
                     .addParameter("descripcion", habilidad.getDescripcion())

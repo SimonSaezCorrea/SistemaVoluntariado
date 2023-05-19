@@ -16,9 +16,9 @@ public class TareaRepoImp implements TareaRepository {
     private Sql2o sql2o;
 
     @Override
-    public Tarea crear(Tarea tarea) {
-        try (Connection conn = sql2o.open()) {
-            String sql = "INSERT INTO Tarea (nombre, descrip, cant_vol_requeridos, cant_vol_inscritos, id_emergencia, fecha_inicio, fecha_fin, id_estado_tarea)" +
+    public Tarea crear(Tarea tarea){
+        try(Connection conn = sql2o.open()){
+            String sql = "INSERT INTO Tarea (nombre, descrip, cant_vol_requeridos, cant_vol_inscritos, id_emergencia, finicio, ffin, id_estado)" +
                     "VALUES (:nombre, :descrip, :cant_vol_requeridos, :cant_vol_inscritos, :id_emergencia, :fecha_inicio, :fecha_fin, :id_estado_tarea)";
             conn.createQuery(sql, true)
                     .addParameter("nombre", tarea.getNombre())
@@ -40,7 +40,7 @@ public class TareaRepoImp implements TareaRepository {
     @Override
     public List<Tarea> getAll() {
         try (Connection conn = sql2o.open()) {
-            return conn.createQuery("select * from Tarea order by id ASC")
+            return conn.createQuery("select * from Tarea order by id ")
                     .executeAndFetch(Tarea.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -68,9 +68,9 @@ public class TareaRepoImp implements TareaRepository {
                     "cant_vol_requeridos=:cant_vol_requeridos and " +
                     "cant_vol_inscritos=:cant_vol_inscritos and " +
                     "id_emergencia=:id_emergencia and " +
-                    "fecha_inicio=:fecha_inicio and " +
-                    "fecha_fin=:fecha_fin and " +
-                    "id_estado_tarea=:id_estado_tarea " +
+                    "finicio=:fecha_inicio and " +
+                    "ffin=:fecha_fin and " +
+                    "id_estado=:id_estado_tarea " +
                     "WHERE id=:id";
             conn.createQuery(updateSql)
                     .addParameter("id", id)

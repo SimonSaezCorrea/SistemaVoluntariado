@@ -18,7 +18,7 @@ public class EmergenciaRepoImp implements EmergenciaRepository {
     @Override
     public Emergencia crear(Emergencia emergencia){
         try(Connection conn = sql2o.open()){
-            String sql = "INSERT INTO Tarea (nombre, descripcion, fecha_inicio, fecha_fin, id_institucion)" +
+            String sql = "INSERT INTO Emergencia (nombre, descrip, finicio, ffin, id_institucion)" +
                     "VALUES (:nombre, :descripcion, :fecha_inicio, :fecha_fin, :id_institucion)";
             conn.createQuery(sql, true)
                     .addParameter("nombre", emergencia.getNombre())
@@ -37,7 +37,7 @@ public class EmergenciaRepoImp implements EmergenciaRepository {
     @Override
     public List<Emergencia> getAll() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from Emergencia order by id ASC")
+            return conn.createQuery("select * from Emergencia order by id")
                     .executeAndFetch(Emergencia.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -61,10 +61,10 @@ public class EmergenciaRepoImp implements EmergenciaRepository {
     public String update(Emergencia emergencia, Integer id){
         try(Connection conn = sql2o.open()){
             String updateSql = "update Emergencia set nombre=:nombre and " +
-                    "descripcion=:descripcion and " +
-                    "fecha_inicio=:fecha_inicio and " +
-                    "fecha_fin=:fecha_fin and " +
-                    "id_institucion=:id_institucion and " +
+                    "descrip=:descripcion and " +
+                    "finicio=:fecha_inicio and " +
+                    "ffin=:fecha_fin and " +
+                    "id_institucion=:id_institucion " +
                     "WHERE id=:id";
             conn.createQuery(updateSql)
                     .addParameter("id", id)

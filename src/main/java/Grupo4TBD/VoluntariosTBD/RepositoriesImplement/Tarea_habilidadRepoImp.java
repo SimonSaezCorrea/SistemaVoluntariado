@@ -34,7 +34,7 @@ public class Tarea_habilidadRepoImp implements Tarea_habilidadRepository {
     @Override
     public List<Tarea_habilidad> getAll() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from Tarea_habilidad order by id ASC")
+            return conn.createQuery("select * from Tarea_habilidad order by id")
                     .executeAndFetch(Tarea_habilidad.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -17,7 +17,7 @@ public class InstitucionRepoImp implements InstitucionRepository {
     @Override
     public Institucion crear(Institucion institucion){
         try(Connection conn = sql2o.open()){
-            String sql = "INSERT INTO Institucion (nombre, descripcion)" +
+            String sql = "INSERT INTO Institucion (nombre, descrip)" +
                     "VALUES (:nombre, :descripcion)";
             conn.createQuery(sql, true)
                     .addParameter("nombre", institucion.getNombre())
@@ -33,7 +33,7 @@ public class InstitucionRepoImp implements InstitucionRepository {
     @Override
     public List<Institucion> getAll() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from Institucion order by id ASC")
+            return conn.createQuery("select * from Institucion order by id")
                     .executeAndFetch(Institucion.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -56,7 +56,7 @@ public class InstitucionRepoImp implements InstitucionRepository {
     @Override
     public String update(Institucion institucion, Integer id){
         try(Connection conn = sql2o.open()){
-            String updateSql = "update Voluntario set nombre=:nombre and descripcion=:descripcion WHERE id=:id";
+            String updateSql = "update Institucion set nombre=:nombre and descrip=:descripcion WHERE id=:id";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
                     .addParameter("nombre", institucion.getNombre())

@@ -32,7 +32,7 @@ public class VoluntarioRepoImp implements VoluntarioRepository {
     @Override
     public List<Voluntario> getAll() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from Voluntario order by id ASC")
+            return conn.createQuery("select * from Voluntario order by id")
                     .executeAndFetch(Voluntario.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -60,7 +60,7 @@ public class VoluntarioRepoImp implements VoluntarioRepository {
                     .addParameter("id", id)
                     .addParameter("nombre", voluntario.getNombre())
                     .executeUpdate();
-            return "Se actualizó la Voluntario";
+            return "Se actualizó Voluntario";
         }catch (Exception e) {
             System.out.println(e.getMessage());
             return "Fallo al actualizar Voluntario";

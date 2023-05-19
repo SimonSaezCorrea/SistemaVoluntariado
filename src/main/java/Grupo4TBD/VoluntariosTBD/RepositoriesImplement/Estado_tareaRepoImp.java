@@ -17,7 +17,7 @@ public class Estado_tareaRepoImp implements Estado_tareaRepository {
     @Override
     public Estado_tarea crear(Estado_tarea estado_tarea){
         try(Connection conn = sql2o.open()){
-            String sql = "INSERT INTO Vol_habilidad (descripcion)" +
+            String sql = "INSERT INTO Estado_tarea (descrip)" +
                     "VALUES (:descripcion)";
             conn.createQuery(sql, true)
                     .addParameter("descripcion", estado_tarea.getDescripcion())
@@ -32,7 +32,7 @@ public class Estado_tareaRepoImp implements Estado_tareaRepository {
     @Override
     public List<Estado_tarea> getAll() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from Estado_tarea order by id ASC")
+            return conn.createQuery("select * from Estado_tarea order by id")
                     .executeAndFetch(Estado_tarea.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -55,7 +55,7 @@ public class Estado_tareaRepoImp implements Estado_tareaRepository {
     @Override
     public String update(Estado_tarea estado_tarea, Integer id){
         try(Connection conn = sql2o.open()){
-            String updateSql = "update Vol_habilidad set descripcion=:descripcion WHERE id=:id";
+            String updateSql = "update Estado_tarea set descrip=:descripcion WHERE id=:id";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
                     .addParameter("descripcion", estado_tarea.getDescripcion())

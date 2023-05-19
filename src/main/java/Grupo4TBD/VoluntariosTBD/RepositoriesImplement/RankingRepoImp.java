@@ -18,7 +18,7 @@ public class RankingRepoImp implements RankingRepository {
     @Override
     public Ranking crear(Ranking ranking){
         try(Connection conn = sql2o.open()){
-            String sql = "INSERT INTO Tarea (id_voluntario, id_tarea, puntaje, flg_invitado, flg_participa)" +
+            String sql = "INSERT INTO Ranking (id_voluntario, id_tarea, puntaje, flg_invitado, flg_participa)" +
                     "VALUES (:id_voluntario, :id_tarea, :puntaje, :flg_invitado, :flg_participa)";
             conn.createQuery(sql, true)
                     .addParameter("id_voluntario", ranking.getId_voluntario())
@@ -37,7 +37,7 @@ public class RankingRepoImp implements RankingRepository {
     @Override
     public List<Ranking> getAll() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from Ranking order by id ASC")
+            return conn.createQuery("select * from Ranking order by id")
                     .executeAndFetch(Ranking.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -60,11 +60,11 @@ public class RankingRepoImp implements RankingRepository {
     @Override
     public String update(Ranking ranking, Integer id){
         try(Connection conn = sql2o.open()){
-            String updateSql = "update Tarea set id_voluntario=:id_voluntario and " +
+            String updateSql = "update Ranking set id_voluntario=:id_voluntario and " +
                     "id_tarea=:id_tarea and " +
                     "puntaje=:puntaje and " +
                     "flg_invitado=:flg_invitado and " +
-                    "flg_participa=:flg_participa and " +
+                    "flg_participa=:flg_participa " +
                     "WHERE id=:id";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
