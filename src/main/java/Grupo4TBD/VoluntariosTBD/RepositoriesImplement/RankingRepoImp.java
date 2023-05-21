@@ -16,11 +16,13 @@ public class RankingRepoImp implements RankingRepository {
     private Sql2o sql2o;
 
     @Override
+    /*Discuss datatype in DB.*/
     public Ranking crear(Ranking ranking){
         try(Connection conn = sql2o.open()){
-            String sql = "INSERT INTO Ranking (id_voluntario, id_tarea, puntaje, flg_invitado, flg_participa)" +
-                    "VALUES (:id_voluntario, :id_tarea, :puntaje, :flg_invitado, :flg_participa)";
+            String sql = "INSERT INTO Ranking (id, id_voluntario, id_tarea, puntaje, flg_invitado, flg_participa)" +
+                    "VALUES (:id, :id_voluntario, :id_tarea, :puntaje, :flg_invitado, :flg_participa)";
             conn.createQuery(sql, true)
+                    .addParameter("id",ranking.getId())
                     .addParameter("id_voluntario", ranking.getId_voluntario())
                     .addParameter("id_tarea", ranking.getId_tarea())
                     .addParameter("puntaje", ranking.getPuntaje())
@@ -60,12 +62,11 @@ public class RankingRepoImp implements RankingRepository {
     @Override
     public String update(Ranking ranking, Integer id){
         try(Connection conn = sql2o.open()){
-            String updateSql = "update Ranking set id_voluntario=:id_voluntario and " +
-                    "id_tarea=:id_tarea and " +
-                    "puntaje=:puntaje and " +
-                    "flg_invitado=:flg_invitado and " +
-                    "flg_participa=:flg_participa " +
-                    "WHERE id=:id";
+            String updateSql = "UPDATE Ranking SET id_voluntario=:id_voluntario WHERE id=:id;" +
+                    "UPDATE Ranking SET id_tarea=:id_tarea  WHERE id=:id;" +
+                    "UPDATE Ranking SET puntaje=:puntaje  WHERE id=:id;" +
+                    "UPDATE Ranking SET flg_invitado=:flg_invitado  WHERE id=:id;" +
+                    "UPDATE Ranking SET flg_participa=:flg_participa  WHERE id=:id";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
                     .addParameter("id_voluntario", ranking.getId_voluntario())

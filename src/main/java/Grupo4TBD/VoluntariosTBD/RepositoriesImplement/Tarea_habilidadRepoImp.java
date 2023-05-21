@@ -18,9 +18,10 @@ public class Tarea_habilidadRepoImp implements Tarea_habilidadRepository {
     @Override
     public Tarea_habilidad crear(Tarea_habilidad tarea_habilidad){
         try(Connection conn = sql2o.open()){
-            String sql = "INSERT INTO Tarea_habilidad (id_emehab, id_tarea)" +
-                    "VALUES (:id_emehab, :id_tarea)";
+            String sql = "INSERT INTO Tarea_habilidad (id, id_emehab, id_tarea)" +
+                    "VALUES (:id, :id_emehab, :id_tarea)";
             conn.createQuery(sql, true)
+                    .addParameter("id", tarea_habilidad.getId())
                     .addParameter("id_emehab", tarea_habilidad.getId_emehab())
                     .addParameter("id_tarea", tarea_habilidad.getId_tarea())
                     .executeUpdate();
@@ -57,7 +58,8 @@ public class Tarea_habilidadRepoImp implements Tarea_habilidadRepository {
     @Override
     public String update(Tarea_habilidad tarea_habilidad, Integer id){
         try(Connection conn = sql2o.open()){
-            String updateSql = "update Tarea_habilidad set id_emehab=:id_emehab and id_tarea=:id_tarea WHERE id=:id";
+            String updateSql = "UPDATE Tarea_habilidad SET id_emehab=:id_emehab WHERE id=:id;" +
+                    "UPDATE Tarea_habilidad SET id_tarea=:id_tarea WHERE id=:id";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
                     .addParameter("id_emehab", tarea_habilidad.getId_emehab())

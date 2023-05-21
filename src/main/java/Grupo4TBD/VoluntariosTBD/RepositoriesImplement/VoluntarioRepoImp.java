@@ -17,9 +17,10 @@ public class VoluntarioRepoImp implements VoluntarioRepository {
     @Override
     public Voluntario crear(Voluntario voluntario){
         try(Connection conn = sql2o.open()){
-            String sql = "INSERT INTO Voluntario (nombre)" +
-                    "VALUES (:nombre)";
+            String sql = "INSERT INTO Voluntario (id, nombre)" +
+                    "VALUES (:id, :nombre)";
             conn.createQuery(sql, true)
+                    .addParameter("id", voluntario.getId())
                     .addParameter("nombre", voluntario.getNombre())
                     .executeUpdate();
             return voluntario;

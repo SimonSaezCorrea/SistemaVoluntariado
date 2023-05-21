@@ -17,9 +17,10 @@ public class Vol_habilidadRepoImp implements Vol_habilidadRepository {
     @Override
     public Vol_habilidad crear(Vol_habilidad vol_habilidad){
         try(Connection conn = sql2o.open()){
-            String sql = "INSERT INTO Vol_habilidad (id_voluntario, id_habilidad)" +
-                    "VALUES (:id_voluntario, :id_habilidad)";
+            String sql = "INSERT INTO Vol_habilidad (id, id_voluntario, id_habilidad)" +
+                    "VALUES (:id, :id_voluntario, :id_habilidad)";
             conn.createQuery(sql, true)
+                    .addParameter("id", vol_habilidad.getId())
                     .addParameter("id_voluntario", vol_habilidad.getId_voluntario())
                     .addParameter("id_habilidad", vol_habilidad.getId_habilidad())
                     .executeUpdate();
@@ -56,7 +57,8 @@ public class Vol_habilidadRepoImp implements Vol_habilidadRepository {
     @Override
     public String update(Vol_habilidad vol_habilidad, Integer id){
         try(Connection conn = sql2o.open()){
-            String updateSql = "update Vol_habilidad set id_voluntario=:id_voluntario and id_habilidad=:id_habilidad WHERE id=:id";
+            String updateSql = "UPDATE Vol_habilidad SET id_voluntario=:id_voluntario WHERE id=:id;" +
+                    "UPDATE Vol_habilidad SET id_habilidad=:id_habilidad WHERE id=:id";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
                     .addParameter("id_voluntario", vol_habilidad.getId_voluntario())

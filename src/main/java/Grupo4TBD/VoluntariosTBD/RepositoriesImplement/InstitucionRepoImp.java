@@ -17,9 +17,10 @@ public class InstitucionRepoImp implements InstitucionRepository {
     @Override
     public Institucion crear(Institucion institucion){
         try(Connection conn = sql2o.open()){
-            String sql = "INSERT INTO Institucion (nombre, descrip)" +
-                    "VALUES (:nombre, :descripcion)";
+            String sql = "INSERT INTO Institucion (id, nombre, descrip)" +
+                    "VALUES (:id, :nombre, :descrip)";
             conn.createQuery(sql, true)
+                    .addParameter("id", institucion.getId())
                     .addParameter("nombre", institucion.getNombre())
                     .addParameter("descrip", institucion.getDescrip())
                     .executeUpdate();
@@ -44,7 +45,7 @@ public class InstitucionRepoImp implements InstitucionRepository {
     @Override
     public List<Institucion> show(Integer id) {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from Institucion where id = :id_voluntario ")
+            return conn.createQuery("select * from Institucion where id = :id ")
                     .addParameter("id",id)
                     .executeAndFetch(Institucion.class);
         } catch (Exception e) {
@@ -56,7 +57,8 @@ public class InstitucionRepoImp implements InstitucionRepository {
     @Override
     public String update(Institucion institucion, Integer id){
         try(Connection conn = sql2o.open()){
-            String updateSql = "update Institucion set nombre=:nombre and descrip=:descripcion WHERE id=:id";
+            String updateSql = "UPDATE Institucion SET nombre=:nombre WHERE id=:id;" +
+                    "UPDATE Institucion SET descrip=:descrip WHERE id=:id";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
                     .addParameter("nombre", institucion.getNombre())

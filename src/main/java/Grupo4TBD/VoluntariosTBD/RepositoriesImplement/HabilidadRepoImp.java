@@ -17,9 +17,10 @@ public class HabilidadRepoImp implements HabilidadRepository {
     @Override
     public Habilidad crear(Habilidad habilidad){
         try(Connection conn = sql2o.open()){
-            String sql = "INSERT INTO Habilidad (descrip)" +
-                    "VALUES (:descrip)";
+            String sql = "INSERT INTO Habilidad (id, descrip)" +
+                    "VALUES (:id, :descrip)";
             conn.createQuery(sql, true)
+                    .addParameter("id", habilidad.getId())
                     .addParameter("descrip", habilidad.getDescrip())
                     .executeUpdate();
             return habilidad;
@@ -55,7 +56,7 @@ public class HabilidadRepoImp implements HabilidadRepository {
     @Override
     public String update(Habilidad habilidad, Integer id){
         try(Connection conn = sql2o.open()){
-            String updateSql = "update Habilidad set descrip=:descripcion WHERE id=:id";
+            String updateSql = "update Habilidad set descrip=:descrip WHERE id=:id";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
                     .addParameter("descrip", habilidad.getDescrip())

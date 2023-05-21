@@ -18,9 +18,10 @@ public class EmergenciaRepoImp implements EmergenciaRepository {
     @Override
     public Emergencia crear(Emergencia emergencia){
         try(Connection conn = sql2o.open()){
-            String sql = "INSERT INTO Emergencia (nombre, descrip, finicio, ffin, id_institucion)" +
-                    "VALUES (:nombre, :descrip, :finicio, :ffin, :id_institucion)";
+            String sql = "INSERT INTO Emergencia (id, nombre, descrip, finicio, ffin, id_institucion)" +
+                    "VALUES (:id, :nombre, :descrip, :finicio, :ffin, :id_institucion)";
             conn.createQuery(sql, true)
+                    .addParameter("id",emergencia.getId())
                     .addParameter("nombre", emergencia.getNombre())
                     .addParameter("descrip", emergencia.getDescrip())
                     .addParameter("finicio", emergencia.getFinicio())
@@ -60,12 +61,11 @@ public class EmergenciaRepoImp implements EmergenciaRepository {
     @Override
     public String update(Emergencia emergencia, Integer id){
         try(Connection conn = sql2o.open()){
-            String updateSql = "update Emergencia set nombre=:nombre and " +
-                    "descrip=:descrip and " +
-                    "finicio=:finicio and " +
-                    "ffin=:ffin and " +
-                    "id_institucion=:id_institucion " +
-                    "WHERE id=:id";
+            String updateSql = "UPDATE Emergencia SET nombre=:nombre WHERE id=:id;" +
+                    "UPDATE Emergencia SET descrip=:descrip WHERE id=:id;" +
+                    "UPDATE Emergencia SET finicio=:finicio WHERE id=:id;" +
+                    "UPDATE Emergencia SET ffin=:ffin WHERE id=:id;" +
+                    "UPDATE Emergencia SET id_institucion=:id_institucion WHERE id=:id;";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
                     .addParameter("nombre", emergencia.getNombre())

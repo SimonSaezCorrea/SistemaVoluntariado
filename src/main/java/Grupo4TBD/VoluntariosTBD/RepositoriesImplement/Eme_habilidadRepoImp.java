@@ -17,9 +17,10 @@ public class Eme_habilidadRepoImp implements Eme_habilidadRepository {
     @Override
     public Eme_habilidad crear(Eme_habilidad eme_habilidad){
         try(Connection conn = sql2o.open()){
-            String sql = "INSERT INTO Eme_habilidad (id_emergencia, id_habilidad)" +
-                    "VALUES (:id_emergencia, :id_habilidad)";
+            String sql = "INSERT INTO Eme_habilidad (id ,id_emergencia, id_habilidad)" +
+                    "VALUES (:id, :id_emergencia, :id_habilidad)";
             conn.createQuery(sql, true)
+                    .addParameter("id", eme_habilidad.getId())
                     .addParameter("id_emergencia", eme_habilidad.getId_emergencia())
                     .addParameter("id_habilidad", eme_habilidad.getId_habilidad())
                     .executeUpdate();
@@ -54,9 +55,13 @@ public class Eme_habilidadRepoImp implements Eme_habilidadRepository {
     }
 
     @Override
+    /*The function can update the DB entitie, but there is and issue about de return
+    * "Error in executeUpdate, Se retornó un resultado cuando no se esperaba ninguno."
+    * Nota: Pasa con todos*/
     public String update(Eme_habilidad eme_habilidad, Integer id){
         try(Connection conn = sql2o.open()){
-            String updateSql = "update Eme_habilidad set id_emergencia=:id_emergencia and id_habilidad=:id_habilidad WHERE id=:id";
+            String updateSql = "update Eme_habilidad set id_emergencia=:id_emergencia WHERE id=:id;" +
+                    "update Eme_habilidad set id_habilidad=:id_habilidad WHERE id=:id;";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
                     .addParameter("id_emergencia", eme_habilidad.getId_emergencia())

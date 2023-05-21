@@ -18,9 +18,10 @@ public class TareaRepoImp implements TareaRepository {
     @Override
     public Tarea crear(Tarea tarea){
         try(Connection conn = sql2o.open()){
-            String sql = "INSERT INTO Tarea (nombre, descrip, cant_vol_requeridos, cant_vol_inscritos, id_emergencia, finicio, ffin, id_estado)" +
-                    "VALUES (:nombre, :descrip, :cant_vol_requeridos, :cant_vol_inscritos, :id_emergencia, :finicio, :ffin, :id_estado)";
+            String sql = "INSERT INTO Tarea (id, nombre, descrip, cant_vol_requeridos, cant_vol_inscritos, id_emergencia, finicio, ffin, id_estado)" +
+                    "VALUES (:id, :nombre, :descrip, :cant_vol_requeridos, :cant_vol_inscritos, :id_emergencia, :finicio, :ffin, :id_estado)";
             conn.createQuery(sql, true)
+                    .addParameter("id", tarea.getId())
                     .addParameter("nombre", tarea.getNombre())
                     .addParameter("descrip", tarea.getDescrip())
                     .addParameter("cant_vol_requeridos", tarea.getCant_vol_requeridos())
@@ -63,15 +64,14 @@ public class TareaRepoImp implements TareaRepository {
     @Override
     public String update(Tarea tarea, Integer id) {
         try (Connection conn = sql2o.open()) {
-            String updateSql = "update Tarea set nombre=:nombre and " +
-                    "descrip=:descrip and " +
-                    "cant_vol_requeridos=:cant_vol_requeridos and " +
-                    "cant_vol_inscritos=:cant_vol_inscritos and " +
-                    "id_emergencia=:id_emergencia and " +
-                    "finicio=:finicio and " +
-                    "ffin=:ffin and " +
-                    "id_estado=:id_estado " +
-                    "WHERE id=:id";
+            String updateSql = "UPDATE Tarea SET nombre=:nombre WHERE id=:id;" +
+                    "UPDATE Tarea SET descrip=:descrip WHERE id=:id;" +
+                    "UPDATE Tarea SET cant_vol_requeridos=:cant_vol_requeridos WHERE id=:id;" +
+                    "UPDATE Tarea SET cant_vol_inscritos=:cant_vol_inscritos WHERE id=:id;" +
+                    "UPDATE Tarea SET id_emergencia=:id_emergencia WHERE id=:id;" +
+                    "UPDATE Tarea SET finicio=:finicio WHERE id=:id;" +
+                    "UPDATE Tarea SET ffin=:ffin WHERE id=:id;" +
+                    "UPDATE Tarea SET id_estado=:id_estado WHERE id=:id";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
                     .addParameter("nombre", tarea.getNombre())
