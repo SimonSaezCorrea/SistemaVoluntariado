@@ -1,4 +1,4 @@
-package Grupo4TBD.VoluntariosTBD;
+package Grupo4TBD.VoluntariosTBD.Config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

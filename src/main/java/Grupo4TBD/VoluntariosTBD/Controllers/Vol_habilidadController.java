@@ -1,4 +1,4 @@
-package Grupo4TBD.VoluntariosTBD.RestControllers;
+package Grupo4TBD.VoluntariosTBD.Controllers;
 
 
 import Grupo4TBD.VoluntariosTBD.Entities.Vol_habilidad;

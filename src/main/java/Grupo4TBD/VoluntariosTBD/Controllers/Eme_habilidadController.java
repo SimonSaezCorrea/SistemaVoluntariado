@@ -1,4 +1,4 @@
-package Grupo4TBD.VoluntariosTBD.RestControllers;
+package Grupo4TBD.VoluntariosTBD.Controllers;
 
 import Grupo4TBD.VoluntariosTBD.Entities.Eme_habilidad;
 import Grupo4TBD.VoluntariosTBD.Repositories.Eme_habilidadRepository;
