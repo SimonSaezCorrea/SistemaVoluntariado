@@ -3,6 +3,9 @@ package Grupo4TBD.VoluntariosTBD.RepositoriesImplement;
 import Grupo4TBD.VoluntariosTBD.Entities.Usuario;
 import Grupo4TBD.VoluntariosTBD.Repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
@@ -18,13 +21,14 @@ public class UsuarioRepositoryImp implements  UsuarioRepository {
     @Override
     public Usuario crear(Usuario usuario){
         try(Connection conn = sql2o.open()){
-            String sql = "INSERT INTO Usuario (id, nombre, email, password)" +
-                    "VALUES (:id, :nombre, :email, :password)";
+            String sql = "INSERT INTO Usuario (id, nombre, email, password, rol)" +
+                    "VALUES (:id, :nombre, :email, :password, :rol)";
             conn.createQuery(sql, true)
                     .addParameter("id", usuario.getId())
                     .addParameter("nombre", usuario.getNombre())
                     .addParameter("email", usuario.getEmail())
                     .addParameter("password", usuario.getPassword())
+                    .addParameter("rol", usuario.getRol())
                     .executeUpdate();
             return usuario;
         } catch (Exception e) {
@@ -36,7 +40,7 @@ public class UsuarioRepositoryImp implements  UsuarioRepository {
     @Override
     public List<Usuario> getAll() {
         try (Connection conn = sql2o.open()) {
-            return conn.createQuery("select * from Usuario order by id ")
+            return conn.createQuery("select * from Usuario order by id")
                     .executeAndFetch(Usuario.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -63,12 +67,14 @@ public class UsuarioRepositoryImp implements  UsuarioRepository {
                     "nombre=:nombre, " +
                     "email=:email" +
                     "password=:password " +
+                    "rol=:rol" +
                     "where id=:id";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
                     .addParameter("nombre", usuario.getNombre())
                     .addParameter("email", usuario.getEmail())
-                    .addParameter("clave", usuario.getPassword())
+                    .addParameter("password", usuario.getPassword())
+                    .addParameter("rol", usuario.getRol())
                     .executeUpdate();
             return "Se actualizó el Usuario";
         } catch (Exception e) {
@@ -99,5 +105,11 @@ public class UsuarioRepositoryImp implements  UsuarioRepository {
             System.out.println(e.getMessage());
             return null;
         }
+    }
+
+    public Usuario getUserInSession(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = (String)auth.getPrincipal();
+        return this.findByEmail(email);
     }
 }

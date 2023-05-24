@@ -1,4 +1,4 @@
-package Grupo4TBD.VoluntariosTBD.Security;
+package Grupo4TBD.VoluntariosTBD.Services;
 
 import Grupo4TBD.VoluntariosTBD.Entities.Usuario;
 import Grupo4TBD.VoluntariosTBD.RepositoriesImplement.UsuarioRepositoryImp;
@@ -18,11 +18,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
   @Override
   public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-    Usuario usuario = usuarioRepository
-            .findByEmail(email);
+    Usuario usuario = usuarioRepository.findByEmail(email);
     if (usuario == null) {
       throw new UsernameNotFoundException("El usuario con email " + email + "no existe");
     }
     return new UserDetailsImp(usuario);
   }
+
 }

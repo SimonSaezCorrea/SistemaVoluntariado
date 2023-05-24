@@ -1,5 +1,8 @@
-package Grupo4TBD.VoluntariosTBD.Security;
+package Grupo4TBD.VoluntariosTBD.Filters;
 
+import Grupo4TBD.VoluntariosTBD.Models.AuthCredentials;
+import Grupo4TBD.VoluntariosTBD.Services.TokenUtils;
+import Grupo4TBD.VoluntariosTBD.Services.UserDetailsImp;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -8,10 +11,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.stream.Collectors;
 
 
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
@@ -42,7 +47,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException {
         UserDetailsImp userDetails = (UserDetailsImp) authResult.getPrincipal();
-        String token = TokenUtils.createToken(userDetails.getNombre(), userDetails.getUsername());
+
+        final String authorities = authResult.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.joining(","));
+
+        String token = TokenUtils.createToken(userDetails, authorities);
 
         response.addHeader("Authorization", "Bearer " + token);
         response.getWriter().flush();

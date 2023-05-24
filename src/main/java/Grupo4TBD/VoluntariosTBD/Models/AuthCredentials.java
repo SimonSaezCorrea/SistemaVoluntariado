@@ -1,4 +1,4 @@
-package Grupo4TBD.VoluntariosTBD.Security;
+package Grupo4TBD.VoluntariosTBD.Models;
 
 import lombok.Data;
 

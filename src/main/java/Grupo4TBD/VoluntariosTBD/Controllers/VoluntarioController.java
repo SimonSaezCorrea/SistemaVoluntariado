@@ -2,11 +2,13 @@ package Grupo4TBD.VoluntariosTBD.Controllers;
 
 import Grupo4TBD.VoluntariosTBD.Entities.Voluntario;
 import Grupo4TBD.VoluntariosTBD.Repositories.VoluntarioRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/voluntario")
 public class VoluntarioController {
     private final VoluntarioRepository VoluntarioRepository;
 
@@ -15,30 +17,35 @@ public class VoluntarioController {
     }
 
     // crear C
-    @PostMapping("/voluntario")
+    @PostMapping()
+    @PreAuthorize("hasRole('ROLE_COORDINADOR')")
     public Voluntario crear(@RequestBody Voluntario voluntario) {
         return VoluntarioRepository.crear(voluntario);
     }
     // get R
-    @GetMapping("/voluntario")
+    @GetMapping()
+    @PreAuthorize("hasRole('ROLE_COORDINADOR')")
     public List<Voluntario> getAllVoluntario() {
         return VoluntarioRepository.getAll();
     }
     // get by id R
-    @GetMapping("/voluntario/{id}")
+    @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_COORDINADOR')")
     public List<Voluntario> show(@PathVariable Integer id){
         return VoluntarioRepository.show(id);
     }
 
     // actualizar U
-    @PutMapping("/voluntario/{id}")
+    @PutMapping("/{id}")
     @ResponseBody
-    public String updateBoleta(@RequestBody Voluntario voluntario, @PathVariable Integer id){
+    @PreAuthorize("hasRole('ROLE_COORDINADOR')")
+    public String updateVoluntario(@RequestBody Voluntario voluntario, @PathVariable Integer id){
         return VoluntarioRepository.update(voluntario,id);
     }
 
     // borrar D
-    @DeleteMapping("/voluntario/{id}")
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_COORDINADOR')")
     public void borrar(@PathVariable Integer id){
         VoluntarioRepository.delete(id);
     }

@@ -497,3 +497,6 @@ insert into tarea_habilidad (id, id_emehab, id_tarea) values (47, 22, 13);
 insert into tarea_habilidad (id, id_emehab, id_tarea) values (48, 9, 42);
 insert into tarea_habilidad (id, id_emehab, id_tarea) values (49, 44, 23);
 insert into tarea_habilidad (id, id_emehab, id_tarea) values (50, 36, 43);
+
+insert into usuario (id, nombre, email, password, rol) values (1, 'admin', 'admin', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'COORDINADOR');
+insert into usuario (id, nombre, email, password, rol) values (2, 'Adler Dunmuir', 'adler@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'COORDINADOR');

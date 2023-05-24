@@ -16,4 +16,6 @@ public interface UsuarioRepository {
     public void delete(Integer id);
     //Read by email
     public Usuario findByEmail(String email);
+    //Read session
+    public Usuario getUserInSession();
 }

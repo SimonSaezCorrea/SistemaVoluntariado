@@ -2,11 +2,13 @@ package Grupo4TBD.VoluntariosTBD.Controllers;
 
 import Grupo4TBD.VoluntariosTBD.Entities.Tarea;
 import Grupo4TBD.VoluntariosTBD.Repositories.TareaRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/tarea")
 public class TareaController {
     private final Grupo4TBD.VoluntariosTBD.Repositories.TareaRepository TareaRepository;
 
@@ -15,30 +17,35 @@ public class TareaController {
     }
 
     // crear C
-    @PostMapping("/tarea")
+    @PostMapping()
+    @PreAuthorize("hasRole('ROLE_COORDINADOR')")
     public Tarea crear(@RequestBody Tarea tarea) {
         return TareaRepository.crear(tarea);
     }
     // get R
-    @GetMapping("/tarea")
+    @GetMapping()
+    @PreAuthorize("hasRole('ROLE_COORDINADOR') || hasRole('ROLE_VOLUNTARIO')")
     public List<Tarea> getAllTarea() {
         return TareaRepository.getAll();
     }
     // get by id R
-    @GetMapping("/tarea/{id}")
+    @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_COORDINADOR') || hasRole('ROLE_VOLUNTARIO')")
     public List<Tarea> show(@PathVariable Integer id){
         return TareaRepository.show(id);
     }
 
     // actualizar U
-    @PutMapping("/tarea/{id}")
+    @PutMapping("/{id}")
     @ResponseBody
-    public String updateBoleta(@RequestBody Tarea tarea, @PathVariable Integer id){
+    @PreAuthorize("hasRole('ROLE_COORDINADOR')")
+    public String updateTarea(@RequestBody Tarea tarea, @PathVariable Integer id){
         return TareaRepository.update(tarea,id);
     }
 
     // borrar D
-    @DeleteMapping("/tarea/{id}")
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_COORDINADOR')")
     public void borrar(@PathVariable Integer id){
         TareaRepository.delete(id);
     }

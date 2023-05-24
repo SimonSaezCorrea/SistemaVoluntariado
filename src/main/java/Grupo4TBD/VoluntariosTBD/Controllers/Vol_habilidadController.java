@@ -3,11 +3,13 @@ package Grupo4TBD.VoluntariosTBD.Controllers;
 
 import Grupo4TBD.VoluntariosTBD.Entities.Vol_habilidad;
 import Grupo4TBD.VoluntariosTBD.Repositories.Vol_habilidadRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/vol_habilidad")
 public class Vol_habilidadController {
 
     private final Vol_habilidadRepository Vol_habilidadRepository;
@@ -17,30 +19,35 @@ public class Vol_habilidadController {
     }
 
     // crear C
-    @PostMapping("/vol_habilidad")
+    @PostMapping()
+    @PreAuthorize("hasRole('ROLE_COORDINADOR') || hasRole('ROLE_VOLUNTARIO')")
     public Vol_habilidad crear(@RequestBody Vol_habilidad vol_habilidad) {
         return Vol_habilidadRepository.crear(vol_habilidad);
     }
     // get R
-    @GetMapping("/vol_habilidad")
+    @GetMapping()
+    @PreAuthorize("hasRole('ROLE_COORDINADOR') || hasRole('ROLE_VOLUNTARIO')")
     public List<Vol_habilidad> getAllVol_habilidad() {
         return Vol_habilidadRepository.getAll();
     }
     // get by id R
-    @GetMapping("/vol_habilidad/{id}")
+    @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_COORDINADOR') || hasRole('ROLE_VOLUNTARIO')")
     public List<Vol_habilidad> show(@PathVariable Integer id){
         return Vol_habilidadRepository.show(id);
     }
 
     // actualizar U
-    @PutMapping("/vol_habilidad/{id}")
+    @PutMapping("/{id}")
     @ResponseBody
-    public String updateBoleta(@RequestBody Vol_habilidad vol_habilidad, @PathVariable Integer id){
+    @PreAuthorize("hasRole('ROLE_COORDINADOR')")
+    public String updateVol_habilidad(@RequestBody Vol_habilidad vol_habilidad, @PathVariable Integer id){
         return Vol_habilidadRepository.update(vol_habilidad,id);
     }
 
     // borrar D
-    @DeleteMapping("/vol_habilidad/{id}")
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_COORDINADOR')")
     public void borrar(@PathVariable Integer id){
         Vol_habilidadRepository.delete(id);
     }

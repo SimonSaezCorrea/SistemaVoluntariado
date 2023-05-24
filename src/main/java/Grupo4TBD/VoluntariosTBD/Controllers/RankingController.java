@@ -2,11 +2,13 @@ package Grupo4TBD.VoluntariosTBD.Controllers;
 
 import Grupo4TBD.VoluntariosTBD.Entities.Ranking;
 import Grupo4TBD.VoluntariosTBD.Repositories.RankingRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/ranking")
 public class RankingController {
 
     private final RankingRepository RankingRepository;
@@ -16,30 +18,35 @@ public class RankingController {
     }
 
     // crear C
-    @PostMapping("/ranking")
+    @PostMapping()
+    @PreAuthorize("hasRole('ROLE_COORDINADOR')")
     public Ranking crear(@RequestBody Ranking ranking) {
         return RankingRepository.crear(ranking);
     }
     // get R
-    @GetMapping("/ranking")
+    @GetMapping()
+    @PreAuthorize("hasRole('ROLE_COORDINADOR')")
     public List<Ranking> getAllRanking() {
         return RankingRepository.getAll();
     }
     // get by id R
-    @GetMapping("/ranking/{id}")
+    @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_COORDINADOR')")
     public List<Ranking> show(@PathVariable Integer id){
         return RankingRepository.show(id);
     }
 
     // actualizar U
-    @PutMapping("/ranking/{id}")
+    @PutMapping("/{id}")
     @ResponseBody
-    public String updateBoleta(@RequestBody Ranking ranking, @PathVariable Integer id){
+    @PreAuthorize("hasRole('ROLE_COORDINADOR')")
+    public String updateRanking(@RequestBody Ranking ranking, @PathVariable Integer id){
         return RankingRepository.update(ranking,id);
     }
 
     // borrar D
-    @DeleteMapping("/ranking/{id}")
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_COORDINADOR')")
     public void borrar(@PathVariable Integer id){
         RankingRepository.delete(id);
     }

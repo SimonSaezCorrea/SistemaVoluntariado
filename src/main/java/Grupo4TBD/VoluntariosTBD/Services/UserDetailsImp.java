@@ -1,12 +1,16 @@
-package Grupo4TBD.VoluntariosTBD.Security;
+package Grupo4TBD.VoluntariosTBD.Services;
 
 import Grupo4TBD.VoluntariosTBD.Entities.Usuario;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.management.relation.Role;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 @AllArgsConstructor
 public class UserDetailsImp implements UserDetails {
@@ -15,7 +19,9 @@ public class UserDetailsImp implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.emptyList();
+        Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + usuario.getRol()));
+        return authorities;
     }
 
     @Override
