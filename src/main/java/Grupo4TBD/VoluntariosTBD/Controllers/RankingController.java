@@ -1,6 +1,7 @@
 package Grupo4TBD.VoluntariosTBD.Controllers;
 
 import Grupo4TBD.VoluntariosTBD.Entities.Ranking;
+import Grupo4TBD.VoluntariosTBD.Entities.Voluntario;
 import Grupo4TBD.VoluntariosTBD.Repositories.RankingRepository;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -49,5 +50,11 @@ public class RankingController {
     @PreAuthorize("hasRole('ROLE_COORDINADOR')")
     public void borrar(@PathVariable Integer id){
         RankingRepository.delete(id);
+    }
+
+    @GetMapping("/select/{id_tarea}")
+    @PreAuthorize("hasRole('ROLE_COORDINADOR')")
+    public List<Voluntario> seleccionarVoluntarioPorTarea(@PathVariable Integer id_tarea){
+        return RankingRepository.seleccionarVoluntarioPorTarea(id_tarea);
     }
 }

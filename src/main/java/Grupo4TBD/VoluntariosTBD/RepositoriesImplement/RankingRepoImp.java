@@ -1,6 +1,7 @@
 package Grupo4TBD.VoluntariosTBD.RepositoriesImplement;
 
 import Grupo4TBD.VoluntariosTBD.Entities.Ranking;
+import Grupo4TBD.VoluntariosTBD.Entities.Voluntario;
 import Grupo4TBD.VoluntariosTBD.Repositories.RankingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -92,5 +93,17 @@ public class RankingRepoImp implements RankingRepository {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    @Override
+    public List<Voluntario> seleccionarVoluntarioPorTarea(Integer id_tarea){
+        try(Connection conn = sql2o.open()){
+            return conn.createQuery("select voluntario.id, voluntario.nombre from voluntario join ranking on ranking.id_voluntario = voluntario.id where ranking.id_tarea=:id_tarea order by ranking.puntaje;")
+                    .addParameter("id_tarea", id_tarea)
+                    .executeAndFetch(Voluntario.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 }
