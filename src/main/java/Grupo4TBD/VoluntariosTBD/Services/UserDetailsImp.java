@@ -1,14 +1,13 @@
 package Grupo4TBD.VoluntariosTBD.Services;
 
 import Grupo4TBD.VoluntariosTBD.Entities.Usuario;
+import Grupo4TBD.VoluntariosTBD.Entities.Voluntario;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.management.relation.Role;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,6 +15,7 @@ import java.util.Set;
 public class UserDetailsImp implements UserDetails {
 
     public final Usuario usuario;
+    public final Voluntario voluntario;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -55,6 +55,6 @@ public class UserDetailsImp implements UserDetails {
     }
 
     public String getNombre() {
-        return usuario.getNombre();
+        return voluntario.getNombre();
     }
 }

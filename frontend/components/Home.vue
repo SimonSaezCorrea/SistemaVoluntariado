@@ -1,11 +1,9 @@
 <template>
     <div>
-        <Navbar/>
+        <h2>Recuerda iniciar sesión</h2>
     </div>
 </template>
 
 <script>
-export default {
 
-}
 </script>

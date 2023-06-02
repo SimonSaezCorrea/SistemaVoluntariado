@@ -1,53 +1,53 @@
-insert into voluntario (id, nombre) values (1, 'Adler Dunmuir');
-insert into voluntario (id, nombre) values (2, 'Rosalia Hawkes');
-insert into voluntario (id, nombre) values (3, 'Rafaela Hurrell');
-insert into voluntario (id, nombre) values (4, 'May Goodoune');
-insert into voluntario (id, nombre) values (5, 'Dannie Cutchey');
-insert into voluntario (id, nombre) values (6, 'Aristotle Marti');
-insert into voluntario (id, nombre) values (7, 'Silvanus Hainge');
-insert into voluntario (id, nombre) values (8, 'Zollie McNeilley');
-insert into voluntario (id, nombre) values (9, 'Nadya Dobbison');
-insert into voluntario (id, nombre) values (10, 'Dody Wearn');
-insert into voluntario (id, nombre) values (11, 'Lionello Espina');
-insert into voluntario (id, nombre) values (12, 'Geri Squibe');
-insert into voluntario (id, nombre) values (13, 'Meade MacLardie');
-insert into voluntario (id, nombre) values (14, 'Alfredo Lesser');
-insert into voluntario (id, nombre) values (15, 'John Allam');
-insert into voluntario (id, nombre) values (16, 'Emeline Satch');
-insert into voluntario (id, nombre) values (17, 'Stewart Nind');
-insert into voluntario (id, nombre) values (18, 'Dara Ravenshear');
-insert into voluntario (id, nombre) values (19, 'Florry Hargess');
-insert into voluntario (id, nombre) values (20, 'Englebert Jee');
-insert into voluntario (id, nombre) values (21, 'Nicolle Punchard');
-insert into voluntario (id, nombre) values (22, 'Mattie Sorrell');
-insert into voluntario (id, nombre) values (23, 'Morry Housbey');
-insert into voluntario (id, nombre) values (24, 'Edik Cadogan');
-insert into voluntario (id, nombre) values (25, 'Kenneth Bricket');
-insert into voluntario (id, nombre) values (26, 'Murielle Sieve');
-insert into voluntario (id, nombre) values (27, 'Bendick Venour');
-insert into voluntario (id, nombre) values (28, 'Rogerio Brodnecke');
-insert into voluntario (id, nombre) values (29, 'Britt Dall');
-insert into voluntario (id, nombre) values (30, 'Harwilll Furniss');
-insert into voluntario (id, nombre) values (31, 'Agosto Viner');
-insert into voluntario (id, nombre) values (32, 'Vanessa Hallworth');
-insert into voluntario (id, nombre) values (33, 'Mindy Cow');
-insert into voluntario (id, nombre) values (34, 'Debora Polon');
-insert into voluntario (id, nombre) values (35, 'Cesaro Klimochkin');
-insert into voluntario (id, nombre) values (36, 'Maryellen MacIlhagga');
-insert into voluntario (id, nombre) values (37, 'Darrel Jurries');
-insert into voluntario (id, nombre) values (38, 'Shelton Danilchev');
-insert into voluntario (id, nombre) values (39, 'Neal Topping');
-insert into voluntario (id, nombre) values (40, 'Hallie Malshinger');
-insert into voluntario (id, nombre) values (41, 'Hamish Tyrer');
-insert into voluntario (id, nombre) values (42, 'Lev Grzeszczak');
-insert into voluntario (id, nombre) values (43, 'Korrie Arton');
-insert into voluntario (id, nombre) values (44, 'Veda Seary');
-insert into voluntario (id, nombre) values (45, 'Judi Basek');
-insert into voluntario (id, nombre) values (46, 'Janel Edler');
-insert into voluntario (id, nombre) values (47, 'Linnet Dinnies');
-insert into voluntario (id, nombre) values (48, 'Charyl Peasegod');
-insert into voluntario (id, nombre) values (49, 'Lorita Dench');
-insert into voluntario (id, nombre) values (50, 'Briano Molfino');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (1, 1, 'Adler Dunmuir');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (2, 2, 'Rosalia Hawkes');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (3, 3, 'Rafaela Hurrell');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (4, 4, 'May Goodoune');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (5, 5, 'Dannie Cutchey');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (6, 6, 'Aristotle Marti');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (7, 7, 'Silvanus Hainge');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (8, 8, 'Zollie McNeilley');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (9, 9, 'Nadya Dobbison');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (10, 10, 'Dody Wearn');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (11, 11, 'Lionello Espina');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (12, 12, 'Geri Squibe');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (13, 13, 'Meade MacLardie');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (14, 14, 'Alfredo Lesser');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (15, 15, 'John Allam');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (16, 16, 'Emeline Satch');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (17, 17, 'Stewart Nind');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (18, 18, 'Dara Ravenshear');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (19, 19, 'Florry Hargess');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (20, 20, 'Englebert Jee');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (21, 21, 'Nicolle Punchard');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (22, 22, 'Mattie Sorrell');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (23, 23, 'Morry Housbey');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (24, 24, 'Edik Cadogan');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (25, 25, 'Kenneth Bricket');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (26, 26, 'Murielle Sieve');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (27, 27, 'Bendick Venour');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (28, 28, 'Rogerio Brodnecke');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (29, 29, 'Britt Dall');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (30, 30, 'Harwilll Furniss');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (31, 31, 'Agosto Viner');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (32, 32, 'Vanessa Hallworth');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (33, 33, 'Mindy Cow');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (34, 34, 'Debora Polon');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (35, 35, 'Cesaro Klimochkin');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (36, 36, 'Maryellen MacIlhagga');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (37, 37, 'Darrel Jurries');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (38, 38, 'Shelton Danilchev');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (39, 39, 'Neal Topping');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (40, 40, 'Hallie Malshinger');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (41, 41, 'Hamish Tyrer');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (42, 42, 'Lev Grzeszczak');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (43, 43, 'Korrie Arton');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (44, 44, 'Veda Seary');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (45, 45, 'Judi Basek');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (46, 46, 'Janel Edler');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (47, 47, 'Linnet Dinnies');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (48, 48, 'Charyl Peasegod');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (49, 49, 'Lorita Dench');
+INSERT INTO voluntario (id, id_usuario, nombre) VALUES (50, 50, 'Briano Molfino');
 
 insert into habilidad (id, descrip) values (1, 'dictumst etiam faucibus cursus urna ut tellus nulla ut erat id mauris vulputate elementum nullam');
 insert into habilidad (id, descrip) values (2, 'nulla elit ac nulla sed vel enim sit amet nunc viverra dapibus nulla');
@@ -498,5 +498,103 @@ insert into tarea_habilidad (id, id_emehab, id_tarea) values (48, 9, 42);
 insert into tarea_habilidad (id, id_emehab, id_tarea) values (49, 44, 23);
 insert into tarea_habilidad (id, id_emehab, id_tarea) values (50, 36, 43);
 
-insert into usuario (id, nombre, email, password, rol) values (1, 'admin', 'admin', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'COORDINADOR');
-insert into usuario (id, nombre, email, password, rol) values (2, 'Adler Dunmuir', 'adler@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'COORDINADOR');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (1, 'adler@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'COORDINADOR');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (2, 'rosalia@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (3, 'rafaela@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (4, 'may@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (5, 'dannie@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (6, 'aristotle@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (7, 'silvanus@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (8, 'zollie@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (9, 'nadya@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (10, 'dody@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (11, 'lionello@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (12, 'geri@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (13, 'meade@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (14, 'alfredo@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (15, 'john@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (16, 'emeline@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (17, 'stewart@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (18, 'dara@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (19, 'florry@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (20, 'englebert@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (21, 'nicolle@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (22, 'mattie@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (23, 'morry@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (24, 'edik@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (25, 'kenneth@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (26, 'murielle@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (27, 'bendick@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (28, 'rogerio@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (29, 'britt@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (30, 'harwill@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (31, 'agosto@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (32, 'vanessa@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (33, 'mindy@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (34, 'debora@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (35, 'cesaro@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (36, 'maryellen@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (37, 'darrel@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (38, 'shelton@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (39, 'neal@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (40, 'hallie@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (41, 'hamish@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (42, 'lev@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (43, 'korrie@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (44, 'veda@gmail.com','$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (45, 'judi@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (46, 'janel@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (47, 'linnet@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (48, 'charyl@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (49, 'lorita@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');
+INSERT INTO usuario (id, email, password, rol)
+VALUES (50, 'briano@gmail.com', '$2a$10$utwOoAjtTpHQ3Mp2vVK.5uauq1Dud09RHRyDiFsvkMJ5NNt5IMxjq', 'VOLUNTARIO');

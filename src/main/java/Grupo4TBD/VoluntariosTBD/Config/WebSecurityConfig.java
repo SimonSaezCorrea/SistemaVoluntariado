@@ -38,7 +38,7 @@ public class WebSecurityConfig {
 
     http.csrf().disable();
     http.authorizeHttpRequests(authz -> authz
-            .requestMatchers(HttpMethod.POST, "/api/usuario").permitAll()
+            .requestMatchers(HttpMethod.POST, "/register").permitAll()
             .anyRequest().authenticated()
     );
     http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/");

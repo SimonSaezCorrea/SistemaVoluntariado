@@ -1,5 +1,6 @@
 package Grupo4TBD.VoluntariosTBD.Repositories;
 
+import Grupo4TBD.VoluntariosTBD.Entities.Usuario;
 import Grupo4TBD.VoluntariosTBD.Entities.Voluntario;
 import org.springframework.stereotype.Repository;
 
@@ -16,4 +17,6 @@ public interface VoluntarioRepository{
     public String update(Voluntario voluntario, Integer id);
     //Delete
     public void delete(Integer id);
+    //Busca por id_usuario
+    public Voluntario findByUsuario(Integer id_usuario);
 }

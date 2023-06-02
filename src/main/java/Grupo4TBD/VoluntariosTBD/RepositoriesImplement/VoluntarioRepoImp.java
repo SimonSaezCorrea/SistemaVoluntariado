@@ -15,13 +15,16 @@ public class VoluntarioRepoImp implements VoluntarioRepository {
     private Sql2o sql2o;
 
     @Override
-    public Voluntario crear(Voluntario voluntario){
-        try(Connection conn = sql2o.open()){
-            String sql = "INSERT INTO Voluntario (id, nombre)" +
-                    "VALUES (:id, :nombre)";
+    public Voluntario crear(Voluntario voluntario) {
+        try (Connection conn = sql2o.open()) {
+            String sql = "INSERT INTO Voluntario (id, nombre, id_usuario) " +
+                    "VALUES (:id, :nombre, :id_usuario)";
+            Integer nextId = obtenerSiguienteId();
+            voluntario.setId(nextId);
             conn.createQuery(sql, true)
-                    .addParameter("id", voluntario.getId())
+                    .addParameter("id", nextId)
                     .addParameter("nombre", voluntario.getNombre())
+                    .addParameter("id_usuario", voluntario.getId_usuario())
                     .executeUpdate();
             return voluntario;
         } catch (Exception e) {
@@ -60,6 +63,7 @@ public class VoluntarioRepoImp implements VoluntarioRepository {
             conn.createQuery(updateSql)
                     .addParameter("id", id)
                     .addParameter("nombre", voluntario.getNombre())
+                    .addParameter("id_usuario", voluntario.getId_usuario())
                     .executeUpdate();
             return "Se actualizó Voluntario";
         }catch (Exception e) {
@@ -77,6 +81,29 @@ public class VoluntarioRepoImp implements VoluntarioRepository {
         }catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
     }
+
+    @Override
+    public Voluntario findByUsuario(Integer id_usuario) {
+        try (Connection conn = sql2o.open()) {
+            List<Voluntario> voluntarios = conn.createQuery("select * from Voluntario where id_usuario = :id_usuario")
+                    .addParameter("id_usuario", id_usuario)
+                    .executeAndFetch(Voluntario.class);
+            return voluntarios.get(0);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public Integer obtenerSiguienteId() {
+        try (Connection conn = sql2o.open()) {
+            return conn.createQuery("SELECT MAX(id) + 1 FROM Voluntario")
+                    .executeScalar(Integer.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
 }

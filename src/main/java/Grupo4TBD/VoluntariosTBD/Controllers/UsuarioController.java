@@ -1,20 +1,11 @@
 package Grupo4TBD.VoluntariosTBD.Controllers;
 
 import Grupo4TBD.VoluntariosTBD.Entities.Usuario;
-import Grupo4TBD.VoluntariosTBD.Filters.JwtAuthenticationFilter;
 import Grupo4TBD.VoluntariosTBD.Repositories.UsuarioRepository;
-import Grupo4TBD.VoluntariosTBD.Services.TokenUtils;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/usuario")

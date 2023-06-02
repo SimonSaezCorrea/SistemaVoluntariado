@@ -11,4 +11,5 @@ import lombok.*;
 public class Voluntario {
     private Integer id;
     private String nombre;
+    private Integer id_usuario;
 }

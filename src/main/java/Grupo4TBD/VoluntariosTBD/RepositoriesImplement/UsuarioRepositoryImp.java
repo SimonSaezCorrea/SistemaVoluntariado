@@ -5,7 +5,6 @@ import Grupo4TBD.VoluntariosTBD.Repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
@@ -21,11 +20,12 @@ public class UsuarioRepositoryImp implements  UsuarioRepository {
     @Override
     public Usuario crear(Usuario usuario){
         try(Connection conn = sql2o.open()){
-            String sql = "INSERT INTO Usuario (id, nombre, email, password, rol)" +
-                    "VALUES (:id, :nombre, :email, :password, :rol)";
+            String sql = "INSERT INTO Usuario (id, email, password, rol)" +
+                    "VALUES (:id, :email, :password, :rol)";
+            Integer nextId = obtenerSiguienteId();
+            usuario.setId(nextId);
             conn.createQuery(sql, true)
-                    .addParameter("id", usuario.getId())
-                    .addParameter("nombre", usuario.getNombre())
+                    .addParameter("id", nextId)
                     .addParameter("email", usuario.getEmail())
                     .addParameter("password", usuario.getPassword())
                     .addParameter("rol", usuario.getRol())
@@ -64,14 +64,12 @@ public class UsuarioRepositoryImp implements  UsuarioRepository {
     public String update(Usuario usuario, Integer id) {
         try (Connection conn = sql2o.open()) {
             String updateSql = "update Usuario set id=:id, " +
-                    "nombre=:nombre, " +
                     "email=:email" +
                     "password=:password " +
                     "rol=:rol" +
                     "where id=:id";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
-                    .addParameter("nombre", usuario.getNombre())
                     .addParameter("email", usuario.getEmail())
                     .addParameter("password", usuario.getPassword())
                     .addParameter("rol", usuario.getRol())
@@ -107,9 +105,20 @@ public class UsuarioRepositoryImp implements  UsuarioRepository {
         }
     }
 
+    @Override
     public Usuario getUserInSession(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = (String)auth.getPrincipal();
         return this.findByEmail(email);
+    }
+
+    public Integer obtenerSiguienteId() {
+        try (Connection conn = sql2o.open()) {
+            return conn.createQuery("SELECT MAX(id) + 1 FROM Usuario")
+                    .executeScalar(Integer.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 }
