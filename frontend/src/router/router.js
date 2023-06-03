@@ -1,8 +1,6 @@
-import { createApp } from "vue";
-import App from "./App.vue";
 import { createRouter, createWebHistory } from "vue-router";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap";
+import Home from "../views/Home.vue";
+import Login from "../views/Login.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -12,4 +10,4 @@ const router = createRouter({
   ],
 });
 
-createApp(App).use(router).mount("#app");
+export default router;
