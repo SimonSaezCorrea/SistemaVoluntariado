@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/register")
 public class RegistroController {
 
     @Autowired
@@ -26,7 +25,7 @@ public class RegistroController {
     private PasswordEncoder passwordEncoder;
 
     // crear C
-    @PostMapping()
+    @PostMapping("/register")
     public String crear(@RequestBody Register registro) {
         Usuario usuario = new Usuario();
         usuario.setEmail(registro.getEmail());
