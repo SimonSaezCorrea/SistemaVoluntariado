@@ -44,7 +44,7 @@ public class WebSecurityConfig {
     jwtAuthenticationFilter.setFilterProcessesUrl("/login");
 
     http.csrf().disable();
-    http.cors();
+    http.cors().configurationSource(corsConfigurationSource());
     http.authorizeHttpRequests(authz -> authz
             .requestMatchers(HttpMethod.POST, "/register").permitAll()
             .anyRequest().authenticated()
@@ -72,14 +72,12 @@ public class WebSecurityConfig {
   @Bean
   public CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration configuration = new CorsConfiguration();
-    configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173", "http://localhost:3000"));
-    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
-    configuration.setAllowedHeaders(Arrays.asList("*"));
-    configuration.setAllowCredentials(true);
-
+    configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173/")); // Permitir solicitudes desde cualquier origen
+    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Permitir los métodos HTTP especificados
+    configuration.setAllowedHeaders(Arrays.asList("Origin", "Authorization", "Content-Type", "X-Auth-Token")); // Permitir los encabezados especificados
+    configuration.setMaxAge(3600L); // Establecer el tiempo máximo en segundos que las respuestas preflight pueden ser almacenadas en caché
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", configuration);
-
     return source;
   }
 

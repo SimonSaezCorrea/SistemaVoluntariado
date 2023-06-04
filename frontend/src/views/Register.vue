@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import api from '../services/api.js';
+import axios from "axios";
 
 export default {
     name: 'RegisterCard',
@@ -43,7 +43,7 @@ export default {
                     password: this.password
                 };
 
-                const response = await api.register(data); // Llama al método register de api.js
+                const response = await axios.post('register', data); // Llama al método register de api.js
                 this.mensajeRegistro = response.data;
                 console.log(response.data);
             } catch (error) {
