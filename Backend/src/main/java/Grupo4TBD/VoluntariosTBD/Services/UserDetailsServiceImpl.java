@@ -22,7 +22,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
   private VoluntarioRepository voluntarioRepository;
 
   @Override
-  public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+  public UserDetailsImp loadUserByUsername(String email) throws UsernameNotFoundException {
     Usuario usuario = usuarioRepository.findByEmail(email);
     if (usuario == null) {
       throw new UsernameNotFoundException("El usuario con email " + email + "no existe");

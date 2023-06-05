@@ -37,19 +37,18 @@ public class WebSecurityConfig {
   private final JwtAuthorizationFilter jwtAuthorizationFilter;
 
   @Bean
-  SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authManager) throws Exception {
+  SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
     JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter();
-    jwtAuthenticationFilter.setAuthenticationManager(authManager);
-    jwtAuthenticationFilter.setFilterProcessesUrl("/login");
 
     http.csrf().disable();
     http.cors().configurationSource(corsConfigurationSource());
     http.authorizeHttpRequests(authz -> authz
-            .requestMatchers(HttpMethod.POST, "/register").permitAll()
+            .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+            .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
             .anyRequest().authenticated()
     );
-    http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/");
+    //http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/");
     http.addFilter(jwtAuthenticationFilter).addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
     http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     return http.build();

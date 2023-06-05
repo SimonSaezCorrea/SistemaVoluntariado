@@ -1,22 +1,24 @@
 <template>
-    <div class="register-card">
-        <h2 class="mb-4">Registro</h2>
-        <form @submit="submitForm">
-            <div class="mb-3">
-                <label for="nombre-input" class="form-label">Nombre</label>
-                <input id="nombre-input" class="form-control" v-model="nombre" required>
-            </div>
-            <div class="mb-3">
-                <label for="email-input" class="form-label">Email</label>
-                <input id="email-input" class="form-control" v-model="email" type="email" required>
-            </div>
-            <div class="mb-3">
-                <label for="password-input" class="form-label">Contraseña</label>
-                <input id="password-input" class="form-control" v-model="password" type="password" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Registrarse</button>
-            <p class="mt-3">{{ mensajeRegistro }}</p>
-        </form>
+    <div>
+        <div class="register-card">
+            <h2 class="mb-4">Registro</h2>
+            <form @submit="submitForm">
+                <div class="mb-3">
+                    <label for="nombre-input" class="form-label">Nombre</label>
+                    <input id="nombre-input" class="form-control" v-model="nombre" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email-input" class="form-label">Email</label>
+                    <input id="email-input" class="form-control" v-model="email" type="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password-input" class="form-label">Contraseña</label>
+                    <input id="password-input" class="form-control" v-model="password" type="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Registrarse</button>
+                <p class="mt-3">{{ mensajeRegistro }}</p>
+            </form>
+        </div>
     </div>
 </template>
 
@@ -37,13 +39,11 @@ export default {
         async submitForm(event) {
             event.preventDefault();
             try {
-                const data = {
+                const response = await axios.post('auth/register', {
                     nombre: this.nombre,
                     email: this.email,
                     password: this.password
-                };
-
-                const response = await axios.post('register', data); // Llama al método register de api.js
+                }); // Llama al método register de api.js
                 this.mensajeRegistro = response.data;
                 console.log(response.data);
             } catch (error) {

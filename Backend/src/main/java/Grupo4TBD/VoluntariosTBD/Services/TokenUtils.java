@@ -5,7 +5,9 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class TokenUtils {
   private static final String JWT_SECRET_KEY = "4qhq8LrEBfYcaRHxhdb9zURb2rf8e7Ud";
   public static final long JWT_TOKEN_VALIDITY = 2_592_00L;
@@ -34,11 +37,13 @@ public class TokenUtils {
             .getBody();
   }
 
-  public static String createToken(UserDetailsImp userDetails, String authorities) {
-    long expirationTime = JWT_TOKEN_VALIDITY + 1000;
-
+  public static String createToken(UserDetailsImp userDetails) {
     Map<String, Object> extra = new HashMap<String, Object>();
     extra.put("nombre", userDetails.getNombre());
+
+    String authorities = userDetails.getAuthorities().stream()
+            .map(GrantedAuthority::getAuthority)
+            .collect(Collectors.joining(","));
 
     return Jwts.builder()
             .setSubject(userDetails.getUsername())
