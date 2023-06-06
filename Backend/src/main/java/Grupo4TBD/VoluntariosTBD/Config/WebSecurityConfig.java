@@ -71,7 +71,7 @@ public class WebSecurityConfig {
   @Bean
   public CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration configuration = new CorsConfiguration();
-    configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173/")); // Permitir solicitudes desde cualquier origen
+    configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000/")); // Permitir solicitudes desde cualquier origen
     configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Permitir los métodos HTTP especificados
     configuration.setAllowedHeaders(Arrays.asList("Origin", "Authorization", "Content-Type", "X-Auth-Token")); // Permitir los encabezados especificados
     configuration.setMaxAge(3600L); // Establecer el tiempo máximo en segundos que las respuestas preflight pueden ser almacenadas en caché

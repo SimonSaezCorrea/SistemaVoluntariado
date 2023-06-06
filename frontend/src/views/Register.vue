@@ -23,10 +23,9 @@
 </template>
 
 <script>
-import axios from "axios";
-
+import axios from 'axios'
 export default {
-    name: 'RegisterCard',
+    name: 'RegisterView',
     data() {
         return {
             nombre: '',
@@ -58,6 +57,7 @@ export default {
     }
 }
 </script>
+
 
 <style scoped>
 .register-card {

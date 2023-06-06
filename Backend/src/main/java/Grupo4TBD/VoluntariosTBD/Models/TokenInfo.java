@@ -1,3 +1,3 @@
 package Grupo4TBD.VoluntariosTBD.Models;
 
-public record TokenInfo(String jwtToken) {}
+public record TokenInfo(Sesion sesion, String jwtToken) {}

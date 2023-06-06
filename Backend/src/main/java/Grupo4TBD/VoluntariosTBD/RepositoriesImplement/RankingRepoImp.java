@@ -98,7 +98,11 @@ public class RankingRepoImp implements RankingRepository {
     @Override
     public List<Voluntario> seleccionarVoluntarioPorTarea(Integer id_tarea){
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select voluntario.id, voluntario.nombre from voluntario join ranking on ranking.id_voluntario = voluntario.id where ranking.id_tarea=:id_tarea order by ranking.puntaje;")
+            return conn.createQuery("select voluntario.id, voluntario.nombre, voluntario.id_usuario from voluntario " +
+                            "join ranking on " +
+                            "ranking.id_voluntario = voluntario.id " +
+                            "where ranking.id_tarea=:id_tarea " +
+                            "order by ranking.puntaje;")
                     .addParameter("id_tarea", id_tarea)
                     .executeAndFetch(Voluntario.class);
         } catch (Exception e) {

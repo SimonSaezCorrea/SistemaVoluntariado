@@ -10,8 +10,11 @@
 
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-    name: 'Home',
-    props: ['user']
+    name: 'HomeView',
+    computed: {
+        ...mapGetters(['user'])
+    }
 }
 </script>

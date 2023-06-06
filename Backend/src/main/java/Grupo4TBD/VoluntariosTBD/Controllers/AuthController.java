@@ -96,7 +96,14 @@ public class AuthController {
 
         final String jwt = tokenUtils.createToken(userDetails);
 
-        return ResponseEntity.ok(new TokenInfo(jwt));
+        Sesion sesion = new Sesion();
+        Usuario usuario = usuarioRepository.findByEmail(authenticationReq.getEmail());
+        Voluntario voluntario = voluntarioRepository.findByUsuario(usuario.getId());
+        sesion.setId(usuario.getId());
+        sesion.setEmail(usuario.getEmail());
+        sesion.setNombre(voluntario.getNombre());
+
+        return ResponseEntity.ok(new TokenInfo(sesion, jwt));
     }
 
     private PasswordEncoder passwordEncoder() {

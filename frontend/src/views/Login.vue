@@ -24,7 +24,7 @@
 <script>
 import axios from 'axios'
 export default {
-    name: 'Login',
+    name: 'LoginView',
     data() {
         return {
             email: '',
@@ -33,19 +33,16 @@ export default {
     },
     methods: {
         async login() {
-            try {
-                const response = await axios.post('/auth/login', {
-                    email: this.email,
-                    password: this.password
-                });
+            const response = await axios.post('/auth/login', {
+                email: this.email,
+                password: this.password
+            });
 
-                localStorage.setItem('token', response.data.jwtToken);
-                this.$router.push('/');
-            } catch (error) {
-                console.error(error);
-            }
+            localStorage.setItem('token', response.data.jwtToken);
+            this.$store.dispatch('user', response.data.sesion);
+
+            this.$router.push('/');
         }
-
     }
 }
 </script>
