@@ -63,11 +63,11 @@ public class RankingRepoImp implements RankingRepository {
     @Override
     public String update(Ranking ranking, Integer id){
         try(Connection conn = sql2o.open()){
-            String updateSql = "UPDATE Ranking SET id_voluntario=:id_voluntario WHERE id=:id;" +
-                    "UPDATE Ranking SET id_tarea=:id_tarea  WHERE id=:id;" +
-                    "UPDATE Ranking SET puntaje=:puntaje  WHERE id=:id;" +
-                    "UPDATE Ranking SET flg_invitado=:flg_invitado  WHERE id=:id;" +
-                    "UPDATE Ranking SET flg_participa=:flg_participa  WHERE id=:id";
+            String updateSql = "UPDATE Ranking SET id_voluntario=:id_voluntario, " +
+                    "id_tarea=:id_tarea, puntaje=:puntaje, " +
+                    "flg_invitado=:flg_invitado," +
+                    "flg_participa=:flg_participa " +
+                    "WHERE id=:id;";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
                     .addParameter("id_voluntario", ranking.getId_voluntario())

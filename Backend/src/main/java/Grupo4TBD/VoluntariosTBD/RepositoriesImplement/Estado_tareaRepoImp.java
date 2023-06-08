@@ -56,7 +56,7 @@ public class Estado_tareaRepoImp implements Estado_tareaRepository {
     @Override
     public String update(Estado_tarea estado_tarea, Integer id){
         try(Connection conn = sql2o.open()){
-            String updateSql = "update Estado_tarea set descrip=:descrip WHERE id=:id";
+            String updateSql = "UPDATE Estado_tarea SET descrip=:descrip WHERE id=:id";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
                     .addParameter("descrip", estado_tarea.getDescrip())

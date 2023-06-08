@@ -17,4 +17,8 @@ public class Emergencia {
     private Date finicio;
     private Date ffin;
     private Integer id_institucion;
+    //Cuidar formato WGS84, el cual establece
+    //que las coordenadas son angulares.
+    private Float latitud;
+    private Float longitud;
 }

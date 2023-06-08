@@ -57,8 +57,9 @@ public class Vol_habilidadRepoImp implements Vol_habilidadRepository {
     @Override
     public String update(Vol_habilidad vol_habilidad, Integer id){
         try(Connection conn = sql2o.open()){
-            String updateSql = "UPDATE Vol_habilidad SET id_voluntario=:id_voluntario WHERE id=:id;" +
-                    "UPDATE Vol_habilidad SET id_habilidad=:id_habilidad WHERE id=:id";
+            String updateSql = "UPDATE Vol_habilidad SET id_voluntario=:id_voluntario, " +
+                    "id_habilidad=:id_habilidad" +
+                    " WHERE id=:id;";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
                     .addParameter("id_voluntario", vol_habilidad.getId_voluntario())

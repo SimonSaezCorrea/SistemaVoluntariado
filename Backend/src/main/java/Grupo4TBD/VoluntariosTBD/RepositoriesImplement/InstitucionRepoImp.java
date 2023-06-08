@@ -57,8 +57,8 @@ public class InstitucionRepoImp implements InstitucionRepository {
     @Override
     public String update(Institucion institucion, Integer id){
         try(Connection conn = sql2o.open()){
-            String updateSql = "UPDATE Institucion SET nombre=:nombre WHERE id=:id;" +
-                    "UPDATE Institucion SET descrip=:descrip WHERE id=:id";
+            String updateSql = "UPDATE Institucion SET nombre=:nombre, descrip=:descrip " +
+                    "WHERE id=:id;";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
                     .addParameter("nombre", institucion.getNombre())

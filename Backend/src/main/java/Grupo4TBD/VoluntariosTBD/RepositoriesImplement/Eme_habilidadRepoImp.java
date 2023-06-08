@@ -60,8 +60,9 @@ public class Eme_habilidadRepoImp implements Eme_habilidadRepository {
     * Nota: Pasa con todos*/
     public String update(Eme_habilidad eme_habilidad, Integer id){
         try(Connection conn = sql2o.open()){
-            String updateSql = "update Eme_habilidad set id_emergencia=:id_emergencia WHERE id=:id;" +
-                    "update Eme_habilidad set id_habilidad=:id_habilidad WHERE id=:id;";
+            String updateSql = "UPDATE Eme_habilidad " +
+                    "SET id_emergencia=:id_emergencia, id_habilidad=:id_habilidad " +
+                    "WHERE id=:id;";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
                     .addParameter("id_emergencia", eme_habilidad.getId_emergencia())
