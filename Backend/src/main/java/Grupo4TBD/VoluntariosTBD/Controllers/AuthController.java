@@ -85,25 +85,47 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<TokenInfo> authenticate(@RequestBody AuthCredentials authenticationReq) {
-        logger.info("Autenticando al usuario {}", authenticationReq.getEmail());
+        try {
+            logger.info("Autenticando al usuario {}", authenticationReq.getEmail());
 
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(authenticationReq.getEmail(),
-                        authenticationReq.getPassword()));
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(authenticationReq.getEmail(),
+                            authenticationReq.getPassword()));
 
-        final UserDetailsImp userDetails = usuarioDetailsServiceImpl.loadUserByUsername(
-                authenticationReq.getEmail());
+            final UserDetailsImp userDetails = usuarioDetailsServiceImpl.loadUserByUsername(
+                    authenticationReq.getEmail());
 
-        final String jwt = tokenUtils.createToken(userDetails);
+            final String jwt = tokenUtils.createToken(userDetails);
 
-        Sesion sesion = new Sesion();
-        Usuario usuario = usuarioRepository.findByEmail(authenticationReq.getEmail());
-        Voluntario voluntario = voluntarioRepository.findByUsuario(usuario.getId());
-        sesion.setId(usuario.getId());
-        sesion.setEmail(usuario.getEmail());
-        sesion.setNombre(voluntario.getNombre());
+            Sesion sesion = new Sesion();
+            Usuario usuario = usuarioRepository.findByEmail(authenticationReq.getEmail());
 
-        return ResponseEntity.ok(new TokenInfo(sesion, jwt));
+            if (usuario == null) {
+                // El usuario no existe
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+
+            Voluntario voluntario = voluntarioRepository.findByUsuario(usuario.getId());
+
+            if (voluntario == null) {
+                // No se encontró el voluntario asociado al usuario
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+
+            sesion.setId(usuario.getId());
+            sesion.setEmail(usuario.getEmail());
+            sesion.setNombre(voluntario.getNombre());
+
+            return ResponseEntity.ok(new TokenInfo(sesion, jwt));
+        } catch (AuthenticationException e) {
+            // El usuario no pudo ser autenticado
+            logger.error("Error de autenticación: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        } catch (Exception e) {
+            // Manejo de otras excepciones
+            logger.error("Error al autenticar al usuario: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     private PasswordEncoder passwordEncoder() {

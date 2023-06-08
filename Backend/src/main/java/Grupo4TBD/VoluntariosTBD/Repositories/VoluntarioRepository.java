@@ -19,4 +19,6 @@ public interface VoluntarioRepository{
     public void delete(Integer id);
     //Busca por id_usuario
     public Voluntario findByUsuario(Integer id_usuario);
+
+
 }

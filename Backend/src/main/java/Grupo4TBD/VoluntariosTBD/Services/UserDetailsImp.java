@@ -15,7 +15,7 @@ import java.util.Set;
 public class UserDetailsImp implements UserDetails {
 
     public final Usuario usuario;
-    public final Voluntario voluntario;
+    public final String nombre;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -55,6 +55,6 @@ public class UserDetailsImp implements UserDetails {
     }
 
     public String getNombre() {
-        return voluntario.getNombre();
+        return this.nombre;
     }
 }
