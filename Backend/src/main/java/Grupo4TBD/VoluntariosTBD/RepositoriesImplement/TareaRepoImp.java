@@ -18,9 +18,10 @@ public class TareaRepoImp implements TareaRepository {
     @Override
     public Tarea crear(Tarea tarea){
         try(Connection conn = sql2o.open()){
-            String sql = "INSERT INTO Tarea (id, nombre, descrip, cant_vol_requeridos, cant_vol_inscritos, id_emergencia, finicio, ffin, id_estado)" +
-                    "VALUES (:id, :nombre, :descrip, :cant_vol_requeridos, :cant_vol_inscritos, :id_emergencia, :finicio, :ffin, :id_estado)" +
-                    "ST_GeomFromText('POINT(:latitud :longitud)', 4326)";
+            String sql = "INSERT INTO Tarea (id, nombre, descrip, cant_vol_requeridos, cant_vol_inscritos, " +
+                    "id_emergencia, finicio, ffin, id_estado, geom)" +
+                    "VALUES (:id, :nombre, :descrip, :cant_vol_requeridos, :cant_vol_inscritos, :id_emergencia, " +
+                    ":finicio, :ffin, :id_estado, ST_GeomFromText('POINT(:latitud :longitud)', 4326)";
             conn.createQuery(sql, true)
                     .addParameter("id", tarea.getId())
                     .addParameter("nombre", tarea.getNombre())
@@ -44,7 +45,9 @@ public class TareaRepoImp implements TareaRepository {
     @Override
     public List<Tarea> getAll() {
         try (Connection conn = sql2o.open()) {
-            return conn.createQuery("select * from Tarea order by id ")
+            return conn.createQuery("select id, nombre, descrip, cant_vol_requeridos, cant_vol_inscritos, " +
+                            "id_emergencia, finicio, ffin, id_estado, ST_X(geom) AS latitud, " +
+                            "ST_Y(geom) AS longitud from Tarea order by id ")
                     .executeAndFetch(Tarea.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -55,7 +58,9 @@ public class TareaRepoImp implements TareaRepository {
     @Override
     public List<Tarea> show(Integer id) {
         try (Connection conn = sql2o.open()) {
-            return conn.createQuery("select * from Tarea where id=:id ")
+            return conn.createQuery("select id, nombre, descrip, cant_vol_requeridos, cant_vol_inscritos, " +
+                            "id_emergencia, finicio, ffin, id_estado, ST_X(geom) AS latitud, " +
+                            "ST_Y(geom) AS longitud from Tarea where id=:id ")
                     .addParameter("id", id)
                     .executeAndFetch(Tarea.class);
         } catch (Exception e) {

@@ -7,4 +7,6 @@ public class Sesion {
     private Integer id;
     private String email;
     private String nombre;
+    private Float longitud;
+    private Float latitud;
 }

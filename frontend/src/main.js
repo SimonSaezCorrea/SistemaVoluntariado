@@ -5,6 +5,7 @@ import "bootstrap/dist/js/bootstrap.js";
 import router from "./router/router";
 import "./services/axios";
 import store from "./store/vuex";
+import "leaflet/dist/leaflet.css";
 
 Vue.config.productionTip = false;
 

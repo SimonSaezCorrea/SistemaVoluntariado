@@ -18,7 +18,7 @@ public class EmergenciaRepoImp implements EmergenciaRepository {
     @Override
     public Emergencia crear(Emergencia emergencia){
         try(Connection conn = sql2o.open()){
-            String sql = "INSERT INTO Emergencia (id, nombre, descrip, finicio, ffin, id_institucion)" +
+            String sql = "INSERT INTO Emergencia (id, nombre, descrip, finicio, ffin, id_institucion, geom)" +
                     "VALUES (:id, :nombre, :descrip, :finicio, :ffin, :id_institucion, " +
                     "ST_GeomFromText('POINT(:latitud :longitud)', 4326))";
             conn.createQuery(sql, true)
@@ -41,7 +41,8 @@ public class EmergenciaRepoImp implements EmergenciaRepository {
     @Override
     public List<Emergencia> getAll() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from Emergencia order by id")
+            return conn.createQuery("select id, nombre, descrip, finicio, ffin, id_institucion, " +
+                            "ST_X(geom) AS latitud, ST_Y(geom) AS longitud from Emergencia order by id")
                     .executeAndFetch(Emergencia.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -52,7 +53,8 @@ public class EmergenciaRepoImp implements EmergenciaRepository {
     @Override
     public List<Emergencia> show(Integer id) {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select * from Emergencia where id=:id ")
+            return conn.createQuery("select id, nombre, descrip, finicio, ffin, id_institucion, " +
+                            "ST_X(geom) AS latitud, ST_Y(geom) AS longitud from Emergencia where id=:id ")
                     .addParameter("id", id)
                     .executeAndFetch(Emergencia.class);
         } catch (Exception e) {

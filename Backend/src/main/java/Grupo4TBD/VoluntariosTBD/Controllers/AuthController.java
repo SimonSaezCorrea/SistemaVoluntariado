@@ -60,6 +60,8 @@ public class AuthController {
         Voluntario voluntario = new Voluntario();
         voluntario.setNombre(registro.getNombre());
         voluntario.setId_usuario(usuario.getId());
+        voluntario.setLatitud(registro.getLatitud());
+        voluntario.setLongitud(registro.getLongitud());
         voluntario = voluntarioRepository.crear(voluntario);
         if (voluntario == null) {
             usuarioRepository.delete(usuario.getId());
@@ -80,6 +82,8 @@ public class AuthController {
         sesion.setId(usuario.getId());
         sesion.setEmail(usuario.getEmail());
         sesion.setNombre(voluntario.getNombre());
+        sesion.setLongitud(voluntario.getLongitud());
+        sesion.setLatitud(voluntario.getLatitud());
         return sesion;
     }
 
@@ -115,6 +119,8 @@ public class AuthController {
             sesion.setId(usuario.getId());
             sesion.setEmail(usuario.getEmail());
             sesion.setNombre(voluntario.getNombre());
+            sesion.setLongitud(voluntario.getLongitud());
+            sesion.setLatitud(voluntario.getLatitud());
 
             return ResponseEntity.ok(new TokenInfo(sesion, jwt));
         } catch (AuthenticationException e) {

@@ -8,9 +8,12 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
                 <ul class="navbar-nav">
+                     <li class="nav-item">
+                        <router-link to="/ranking" class="nav-link"  v-if="user">Ranking</router-link>
+                     </li>
                     <li class="nav-item">
-                        <router-link to="/ranking" class="nav-link" v-if="user">Ranking</router-link>
-                    </li>
+                         <router-link to="/mapa" class="nav-link"  v-if="user">Mapa</router-link>
+                     </li>
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item" v-if="!user">

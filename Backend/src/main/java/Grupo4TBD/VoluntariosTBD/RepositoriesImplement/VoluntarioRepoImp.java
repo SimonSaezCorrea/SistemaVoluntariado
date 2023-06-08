@@ -17,15 +17,15 @@ public class VoluntarioRepoImp implements VoluntarioRepository {
     @Override
     public Voluntario crear(Voluntario voluntario) {
         try (Connection conn = sql2o.open()) {
-            String sql = "INSERT INTO Voluntario (id, nombre, id_usuario) " +
-                    "VALUES (:id, :nombre, :id_usuario, ST_GeomFromText('POINT(:latitud :longitud)', 4326)";
+            String sql = "INSERT INTO Voluntario (id, nombre, id_usuario, geom) " +
+                    "VALUES (:id, :nombre, :id_usuario, ST_SetSRID(ST_MakePoint(:longitud, :latitud), 4326))";
             Integer nextId = obtenerSiguienteId();
             conn.createQuery(sql, true)
                     .addParameter("id", nextId)
                     .addParameter("nombre", voluntario.getNombre())
                     .addParameter("id_usuario", voluntario.getId_usuario())
                     .addParameter("longitud", voluntario.getLongitud())
-                    .addParameter("latitud",voluntario.getLatitud())
+                    .addParameter("latitud", voluntario.getLatitud())
                     .executeUpdate();
             voluntario.setId(obtenerSiguienteId());
             return voluntario;
@@ -35,10 +35,12 @@ public class VoluntarioRepoImp implements VoluntarioRepository {
         }
     }
 
+
+
     @Override
     public List<Voluntario> getAll() {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select id, nombre, id_usuario from Voluntario order by id")
+            return conn.createQuery("select id, nombre, id_usuario, ST_X(geom) AS latitud, ST_Y(geom) AS longitud from Voluntario order by id")
                     .executeAndFetch(Voluntario.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -49,7 +51,7 @@ public class VoluntarioRepoImp implements VoluntarioRepository {
     @Override
     public List<Voluntario> show(Integer id) {
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("select id, nombre, id_usuario from Voluntario where id = :id ")
+            return conn.createQuery("select id, nombre, id_usuario, ST_X(geom) AS latitud, ST_Y(geom) AS longitud from Voluntario where id = :id ")
                     .addParameter("id",id)
                     .executeAndFetch(Voluntario.class);
         } catch (Exception e) {
@@ -92,7 +94,7 @@ public class VoluntarioRepoImp implements VoluntarioRepository {
     @Override
     public Voluntario findByUsuario(Integer id_usuario) {
         try (Connection conn = sql2o.open()) {
-            List<Voluntario> voluntarios = conn.createQuery("select id, nombre, id_usuario from Voluntario where id_usuario = :id_usuario")
+            List<Voluntario> voluntarios = conn.createQuery("select id, nombre, id_usuario, ST_X(geom) AS latitud, ST_Y(geom) AS longitud from Voluntario where id_usuario = :id_usuario")
                     .addParameter("id_usuario", id_usuario)
                     .executeAndFetch(Voluntario.class);
             return voluntarios.get(0);
