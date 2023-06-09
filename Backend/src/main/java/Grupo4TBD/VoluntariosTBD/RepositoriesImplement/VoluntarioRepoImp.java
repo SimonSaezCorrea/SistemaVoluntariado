@@ -63,15 +63,16 @@ public class VoluntarioRepoImp implements VoluntarioRepository {
     @Override
     public String update(Voluntario voluntario, Integer id){
         try(Connection conn = sql2o.open()){
-            String updateSql = "UPDATE Voluntario SET nombre=:nombre, " +
-                    "ST_GeomFromText('POINT(:latitud :longitud)', 4326) " +
+            String LonStr1 = Float.toString(voluntario.getLongitud());
+            String LatStr1 = Float.toString(voluntario.getLatitud());
+            String updateSql = "UPDATE Voluntario SET nombre=:nombre," +
+                    "id_usuario=:id_usuario, " +
+                    "geom = ST_GeomFromText('POINT(" + LonStr1 + " " + LatStr1 + ")', 4326) " +
                     "WHERE id=:id";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
                     .addParameter("nombre", voluntario.getNombre())
                     .addParameter("id_usuario", voluntario.getId_usuario())
-                    .addParameter("longitud", voluntario.getLongitud())
-                    .addParameter("latitud",voluntario.getLatitud())
                     .executeUpdate();
             return "Se actualizó Voluntario";
         }catch (Exception e) {

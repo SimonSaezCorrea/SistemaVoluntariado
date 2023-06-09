@@ -18,10 +18,12 @@ public class TareaRepoImp implements TareaRepository {
     @Override
     public Tarea crear(Tarea tarea){
         try(Connection conn = sql2o.open()){
+            String LonStr1 = Float.toString(tarea.getLongitud());
+            String LatStr1 = Float.toString(tarea.getLatitud());
             String sql = "INSERT INTO Tarea (id, nombre, descrip, cant_vol_requeridos, cant_vol_inscritos, " +
                     "id_emergencia, finicio, ffin, id_estado, geom)" +
                     "VALUES (:id, :nombre, :descrip, :cant_vol_requeridos, :cant_vol_inscritos, :id_emergencia, " +
-                    ":finicio, :ffin, :id_estado, ST_GeomFromText('POINT(:latitud :longitud)', 4326)";
+                    ":finicio, :ffin, :id_estado, ST_GeomFromText('POINT(" + LonStr1 + " " + LatStr1 + ")', 4326))";
             conn.createQuery(sql, true)
                     .addParameter("id", tarea.getId())
                     .addParameter("nombre", tarea.getNombre())
@@ -32,8 +34,6 @@ public class TareaRepoImp implements TareaRepository {
                     .addParameter("finicio", tarea.getFinicio())
                     .addParameter("ffin", tarea.getFfin())
                     .addParameter("id_estado", tarea.getId_estado())
-                    .addParameter("longitud", tarea.getLongitud())
-                    .addParameter("latitud",tarea.getLatitud())
                     .executeUpdate();
             return tarea;
         } catch (Exception e) {
@@ -72,13 +72,15 @@ public class TareaRepoImp implements TareaRepository {
     @Override
     public String update(Tarea tarea, Integer id) {
         try (Connection conn = sql2o.open()) {
-            String updateSql = "UPDATE Tarea SET nombre=:nombre" +
+            String LonStr1 = Float.toString(tarea.getLongitud());
+            String LatStr1 = Float.toString(tarea.getLatitud());
+            String updateSql = "UPDATE tarea SET nombre=:nombre, " +
                     "descrip=:descrip, cant_vol_requeridos=:cant_vol_requeridos, " +
                     "cant_vol_inscritos=:cant_vol_inscritos," +
                     "id_emergencia=:id_emergencia, " +
                     "finicio=:finicio, ffin=:ffin," +
                     "id_estado=:id_estado," +
-                    "geom = ST_GeomFromText('POINT(:latitud :longitud)', 4326) " +
+                    "geom = ST_GeomFromText('POINT(" + LonStr1 + " " + LatStr1 + ")', 4326) " +
                     "WHERE id=:id;";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
@@ -90,8 +92,6 @@ public class TareaRepoImp implements TareaRepository {
                     .addParameter("finicio", tarea.getFinicio())
                     .addParameter("ffin", tarea.getFfin())
                     .addParameter("id_estado", tarea.getId_estado())
-                    .addParameter("longitud", tarea.getLongitud())
-                    .addParameter("latitud",tarea.getLatitud())
                     .executeUpdate();
             return "Se actualizó la Tarea";
         } catch (Exception e) {

@@ -55,9 +55,6 @@ public class Eme_habilidadRepoImp implements Eme_habilidadRepository {
     }
 
     @Override
-    /*The function can update the DB entitie, but there is and issue about de return
-    * "Error in executeUpdate, Se retornó un resultado cuando no se esperaba ninguno."
-    * Nota: Pasa con todos*/
     public String update(Eme_habilidad eme_habilidad, Integer id){
         try(Connection conn = sql2o.open()){
             String updateSql = "UPDATE Eme_habilidad " +

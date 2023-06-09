@@ -18,9 +18,10 @@ public class EmergenciaRepoImp implements EmergenciaRepository {
     @Override
     public Emergencia crear(Emergencia emergencia){
         try(Connection conn = sql2o.open()){
+            String LonStr = Float.toString(emergencia.getLongitud());
+            String LatStr = Float.toString(emergencia.getLatitud());
             String sql = "INSERT INTO Emergencia (id, nombre, descrip, finicio, ffin, id_institucion, geom)" +
-                    "VALUES (:id, :nombre, :descrip, :finicio, :ffin, :id_institucion, " +
-                    "ST_GeomFromText('POINT(:latitud :longitud)', 4326))";
+                    "VALUES (:id, :nombre, :descrip, :finicio, :ffin, :id_institucion, ST_GeomFromText('POINT(" + LonStr + " " + LatStr + ")', 4326))";
             conn.createQuery(sql, true)
                     .addParameter("id",emergencia.getId())
                     .addParameter("nombre", emergencia.getNombre())
@@ -28,8 +29,6 @@ public class EmergenciaRepoImp implements EmergenciaRepository {
                     .addParameter("finicio", emergencia.getFinicio())
                     .addParameter("ffin", emergencia.getFfin())
                     .addParameter("id_institucion", emergencia.getId_institucion())
-                    .addParameter("longitud", emergencia.getLongitud())
-                    .addParameter("latitud",emergencia.getLatitud())
                     .executeUpdate();
             return emergencia;
         } catch (Exception e) {
@@ -66,11 +65,13 @@ public class EmergenciaRepoImp implements EmergenciaRepository {
     @Override
     public String update(Emergencia emergencia, Integer id){
         try(Connection conn = sql2o.open()){
+            String LonStr = Float.toString(emergencia.getLongitud());
+            String LatStr = Float.toString(emergencia.getLatitud());
             String updateSql = "UPDATE Emergencia " +
                     "SET nombre=:nombre,  " +
                     "descrip=:descrip, finicio=:finicio, ffin=:ffin, " +
                     "id_institucion=:id_institucion, " +
-                    "geom = ST_GeomFromText('POINT(:latitud :longitud)', 4326) " +
+                    "geom = ST_GeomFromText('POINT(" + LonStr + " " + LatStr + ")', 4326)" +
                     "WHERE id=:id;";
             conn.createQuery(updateSql)
                     .addParameter("id", id)
@@ -79,8 +80,6 @@ public class EmergenciaRepoImp implements EmergenciaRepository {
                     .addParameter("finicio", emergencia.getFinicio())
                     .addParameter("ffin", emergencia.getFfin())
                     .addParameter("id_institucion", emergencia.getId_institucion())
-                    .addParameter("longitud",emergencia.getLongitud())
-                    .addParameter("latitud",emergencia.getLatitud())
                     .executeUpdate();
             return "Se actualizó la Emergencia";
         }catch (Exception e) {
