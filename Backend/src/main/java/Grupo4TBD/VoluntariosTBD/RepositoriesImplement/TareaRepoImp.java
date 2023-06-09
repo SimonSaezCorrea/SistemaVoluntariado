@@ -46,8 +46,8 @@ public class TareaRepoImp implements TareaRepository {
     public List<Tarea> getAll() {
         try (Connection conn = sql2o.open()) {
             return conn.createQuery("select id, nombre, descrip, cant_vol_requeridos, cant_vol_inscritos, " +
-                            "id_emergencia, finicio, ffin, id_estado, ST_X(geom) AS latitud, " +
-                            "ST_Y(geom) AS longitud from Tarea order by id ")
+                            "id_emergencia, finicio, ffin, id_estado, ST_X(geom) AS longitud, " +
+                            "ST_Y(geom) AS latitud from Tarea order by id ")
                     .executeAndFetch(Tarea.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -59,8 +59,8 @@ public class TareaRepoImp implements TareaRepository {
     public List<Tarea> show(Integer id) {
         try (Connection conn = sql2o.open()) {
             return conn.createQuery("select id, nombre, descrip, cant_vol_requeridos, cant_vol_inscritos, " +
-                            "id_emergencia, finicio, ffin, id_estado, ST_X(geom) AS latitud, " +
-                            "ST_Y(geom) AS longitud from Tarea where id=:id ")
+                            "id_emergencia, finicio, ffin, id_estado, ST_X(geom) AS longitud, " +
+                            "ST_Y(geom) AS latitud from Tarea where id=:id ")
                     .addParameter("id", id)
                     .executeAndFetch(Tarea.class);
         } catch (Exception e) {

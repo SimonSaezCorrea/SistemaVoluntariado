@@ -1,8 +1,7 @@
 package Grupo4TBD.VoluntariosTBD.Repositories;
 
-import Grupo4TBD.VoluntariosTBD.Entities.Usuario;
 import Grupo4TBD.VoluntariosTBD.Entities.Voluntario;
-import org.springframework.stereotype.Repository;
+import Grupo4TBD.VoluntariosTBD.Models.Requerimiento;
 
 import java.util.List;
 
@@ -19,6 +18,6 @@ public interface VoluntarioRepository{
     public void delete(Integer id);
     //Busca por id_usuario
     public Voluntario findByUsuario(Integer id_usuario);
-
-
+    //Busca por id_habilidad el ranking de voluntarios de una emergencia
+    public List<Requerimiento> rankingVoluntariosRequerimientosEmergencia(Integer id_habilidad);
 }

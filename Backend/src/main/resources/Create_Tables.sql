@@ -85,8 +85,3 @@ CREATE TABLE usuario(
 	password VARCHAR(100),
 	rol VARCHAR(50)
 );
-
-CREATE TABLE estado_tarea(
-	id NUMERIC(2) PRIMARY KEY,
-	descrip VARCHAR(20)
-);

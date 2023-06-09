@@ -41,7 +41,7 @@ public class EmergenciaRepoImp implements EmergenciaRepository {
     public List<Emergencia> getAll() {
         try(Connection conn = sql2o.open()){
             return conn.createQuery("select id, nombre, descrip, finicio, ffin, id_institucion, " +
-                            "ST_X(geom) AS latitud, ST_Y(geom) AS longitud from Emergencia order by id")
+                            "ST_X(geom) AS longitud, ST_Y(geom) AS latitud from Emergencia order by id")
                     .executeAndFetch(Emergencia.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -53,7 +53,7 @@ public class EmergenciaRepoImp implements EmergenciaRepository {
     public List<Emergencia> show(Integer id) {
         try(Connection conn = sql2o.open()){
             return conn.createQuery("select id, nombre, descrip, finicio, ffin, id_institucion, " +
-                            "ST_X(geom) AS latitud, ST_Y(geom) AS longitud from Emergencia where id=:id ")
+                            "ST_X(geom) AS longitud, ST_Y(geom) AS latitud from Emergencia where id=:id ")
                     .addParameter("id", id)
                     .executeAndFetch(Emergencia.class);
         } catch (Exception e) {

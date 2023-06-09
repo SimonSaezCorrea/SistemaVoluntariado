@@ -1,6 +1,7 @@
 package Grupo4TBD.VoluntariosTBD.Controllers;
 
 import Grupo4TBD.VoluntariosTBD.Entities.Voluntario;
+import Grupo4TBD.VoluntariosTBD.Models.Requerimiento;
 import Grupo4TBD.VoluntariosTBD.Repositories.VoluntarioRepository;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -48,5 +49,11 @@ public class VoluntarioController {
     @PreAuthorize("hasRole('ROLE_COORDINADOR')")
     public void borrar(@PathVariable Integer id){
         VoluntarioRepository.delete(id);
+    }
+
+    @GetMapping("/requerimiento/{id}")
+    @PreAuthorize("hasRole('ROLE_COORDINADOR')")
+    public List<Requerimiento> getRankingEmergencia(@PathVariable Integer id){
+        return VoluntarioRepository.rankingVoluntariosRequerimientosEmergencia(id);
     }
 }
