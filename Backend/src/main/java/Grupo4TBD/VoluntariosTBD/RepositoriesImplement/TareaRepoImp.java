@@ -117,14 +117,12 @@ public class TareaRepoImp implements TareaRepository {
     public List<Voluntario> cercanosTarea(Tarea tarea, Integer numberLimit){
 
         try (Connection conn = sql2o.open()) {
-            String longitud = Float.toString(tarea.getLongitud());
-            String latitud = Float.toString(tarea.getLatitud());
-            conn.createQuery("SELECT id, nombre, id_usuario, ST_X(geom) AS longitud, ST_Y(geom) AS latitud FROM Voluntario" +
-                            "ORDER BY ST_Distance(Voluntario.geom, ST_SetSRID(ST_MakePoint(:longitud, :latitud), 4326))"+
+            return conn.createQuery("SELECT id, nombre, id_usuario, ST_X(geom) AS longitud, ST_Y(geom) AS latitud FROM Voluntario " +
+                            "ORDER BY ST_Distance(geom, ST_SetSRID(ST_MakePoint(:longitud, :latitud), 4326)) " +
                             "limit :numberLimit")
                     .addParameter("numberLimit", numberLimit)
-                    .addParameter("longitud", longitud)
-                    .addParameter("latitud", latitud)
+                    .addParameter("longitud", tarea.getLongitud())
+                    .addParameter("latitud", tarea.getLatitud())
                     .executeAndFetch(Voluntario.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());

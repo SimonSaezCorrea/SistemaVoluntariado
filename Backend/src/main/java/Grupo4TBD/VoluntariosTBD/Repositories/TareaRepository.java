@@ -18,5 +18,5 @@ public interface TareaRepository {
     //Delete
     public void delete(Integer id);
 
-    public List<Voluntario> cercanosTarea();
+    public List<Voluntario> cercanosTarea(Tarea tarea, Integer numberLimit);
 }
