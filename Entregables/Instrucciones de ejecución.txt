@@ -1,0 +1,7 @@
+Instrucciones:
+- Abrir proyecto. Se sugiere usar el IDE Intellij IDEA.
+- Verificar credenciales de la BD en application.properties.
+- Ejecutar el archivo "VoluntariosTbdApplication.java"
+- Ir a consola de comandos del sistema operativo.
+- Cambiar dirección en la consola hasta llegar a la carpeta "frontend".
+- ejecutar comandos npm install y npm run serve (uno después del otro).
