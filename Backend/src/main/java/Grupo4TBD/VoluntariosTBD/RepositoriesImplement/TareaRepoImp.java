@@ -1,6 +1,7 @@
 package Grupo4TBD.VoluntariosTBD.RepositoriesImplement;
 
 import Grupo4TBD.VoluntariosTBD.Entities.Tarea;
+import Grupo4TBD.VoluntariosTBD.Entities.Voluntario;
 import Grupo4TBD.VoluntariosTBD.Repositories.TareaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -110,5 +111,24 @@ public class TareaRepoImp implements TareaRepository {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    @Override
+    public List<Voluntario> cercanosTarea(Tarea tarea, Integer numberLimit){
+
+        try (Connection conn = sql2o.open()) {
+            String longitud = Float.toString(tarea.getLongitud());
+            String latitud = Float.toString(tarea.getLatitud());
+            conn.createQuery("SELECT id, nombre, id_usuario, ST_X(geom) AS longitud, ST_Y(geom) AS latitud FROM Voluntario" +
+                            "ORDER BY ST_Distance(Voluntario.geom, ST_SetSRID(ST_MakePoint(:longitud, :latitud), 4326))"+
+                            "limit :numberLimit")
+                    .addParameter("numberLimit", numberLimit)
+                    .addParameter("longitud", longitud)
+                    .addParameter("latitud", latitud)
+                    .executeAndFetch(Voluntario.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 }
