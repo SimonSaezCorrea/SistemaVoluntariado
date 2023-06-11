@@ -102,7 +102,7 @@ public class RankingRepoImp implements RankingRepository {
                             "join ranking on " +
                             "ranking.id_voluntario = voluntario.id " +
                             "where ranking.id_tarea=:id_tarea " +
-                            "order by ranking.puntaje;")
+                            "order by ranking.puntaje desc;")
                     .addParameter("id_tarea", id_tarea)
                     .executeAndFetch(Voluntario.class);
         } catch (Exception e) {
