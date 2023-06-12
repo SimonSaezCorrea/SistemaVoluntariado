@@ -9,5 +9,4 @@ public class VoluntariosTbdApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(VoluntariosTbdApplication.class, args);
 	}
-
 }
