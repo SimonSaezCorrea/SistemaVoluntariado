@@ -1,9 +1,0 @@
-- SpringBoot 3.0.6
-- Con Spring initiallizer usar las dependencias.
-	• Spring Web
-	• MySQL Driver
-	• Lombok
-	• Thymeleaf
-- Java 17
-- jsonwebtoken 0.11.2
-- PostGis 3.3.3
